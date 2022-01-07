@@ -1,6 +1,12 @@
 This packages intents to be an idiomatic PythonApi wrapper for https://www.huobi.com/
 
 Huobi Api Doc: https://huobiapi.github.io/docs
+### Showcase
+TODO
+
+### Contribution
+TODO
+
 
 ### Features:
   - [ ] Fully Support the Rest Api
