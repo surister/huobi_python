@@ -13,6 +13,7 @@ def generate_hmac256_signature(
         url: Url,
         endpoint: Endpoint,
 ):
+
     msg = f"{endpoint.method.name}\n{url.netloc}\n{endpoint.path}\n" + params
 
     _hash = hmac.new(
