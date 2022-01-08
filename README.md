@@ -19,7 +19,10 @@ TODO
     - [ ] Test all marketplace data endpoints
 
   - [ ] Fully Support the Wss Api
-
+  - [ ] Upload project to pypi
+  - [ ] Write documentation
+  - [ ] Set up CI testing
+  - [ ] 
 ### Changelog
 #### 2022-01-07 
 * Add basic project structure
