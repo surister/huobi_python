@@ -42,6 +42,7 @@ class HuobiRequest:
         params = self.default_request_params
         params.update(dict(AccessKeyId=self.access_key))
         params.update(dict(Timestamp=timestamp))
+        params.update(self.endpoint.prepared_query_params)
         return urllib.parse.urlencode(params)
 
     def _compose_request_url(self):
@@ -61,7 +62,7 @@ class HuobiRequest:
 
     def execute(self):
         request_url = self._compose_request_url()
-
+        print(request_url)
         r = requests.request(
             method=self.endpoint.method.name,
             url=request_url)

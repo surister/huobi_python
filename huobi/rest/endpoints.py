@@ -3,6 +3,14 @@ from dataclasses import dataclass, field
 from huobi.rest.enums import HttpMethod
 
 
+class _DONT_SEND_IF_NONE:
+    def __repr__(self):
+        return 'DONT_SEND_IF_NONE'
+
+
+DONT_SEND = _DONT_SEND_IF_NONE()
+
+
 @dataclass
 class Endpoint:
     name: str
@@ -13,7 +21,16 @@ class Endpoint:
 
     @property
     def path(self):
-        return self.raw_path.format(**self.path_params)
+        return self.raw_path
+
+    @property
+    def prepared_query_params(self):
+        d = {}
+        for k, v in self.query_params.items():
+            if v is not DONT_SEND:
+                d.update({k: v})
+
+        return d
 
 
 @dataclass
@@ -33,5 +50,6 @@ class AccountBalanceEndpoint(Endpoint):
 @dataclass
 class AssetValuation(Endpoint):
     name: str = 'Asset'
-    raw_path: str = '/v2/account/asset-valuation'
+    raw_path: str = '/v2/account/valuation'
     method: HttpMethod = HttpMethod.GET
+    query_params = {'accountType': DONT_SEND}

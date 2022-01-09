@@ -2,7 +2,6 @@ import base64
 import hashlib
 import hmac
 
-
 from huobi.rest.endpoints import Endpoint
 from huobi.rest.url import Url
 
@@ -15,7 +14,6 @@ def generate_hmac256_signature(
 ):
 
     msg = f"{endpoint.method.name}\n{url.netloc}\n{endpoint.path}\n" + params
-
     _hash = hmac.new(
         key=secret_key.encode('utf-8'),
         msg=msg.encode('utf-8'),
