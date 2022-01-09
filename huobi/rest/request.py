@@ -9,9 +9,6 @@ from huobi.rest.utils import generate_hmac256_signature
 
 
 class HuobiRequest:
-    """
-    Recibiendo un Endpoint, genere la info necesaria para la request
-    """
     default_request_params = {
         'AccessKeyId': None,
         'SignatureMethod': 'HmacSHA256',
@@ -62,8 +59,7 @@ class HuobiRequest:
 
     def execute(self):
         request_url = self._compose_request_url()
-        print(request_url)
-        r = requests.request(
+        return requests.request(
             method=self.endpoint.method.name,
-            url=request_url)
-        print(r.text)
+            url=request_url,
+        )

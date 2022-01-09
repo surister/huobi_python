@@ -29,7 +29,6 @@ class Endpoint:
         for k, v in self.query_params.items():
             if v is not DONT_SEND:
                 d.update({k: v})
-
         return d
 
 
