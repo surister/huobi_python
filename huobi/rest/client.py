@@ -1,7 +1,8 @@
 from typing import Union
 
 from huobi.rest.constants import REST_API_HUOBI_URL
-from huobi.rest.endpoints import AccountsEndpoint, AccountBalanceEndpoint, AssetValuation, DONT_SEND
+from huobi.rest.endpoints import AccountsEndpoint, AccountBalanceEndpoint, AssetValuationEndpoint, DONT_SEND, \
+    LatestTickersForAllPairsEndpoint, UIDEndpoint
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
 
@@ -39,7 +40,15 @@ class HuobiClient:
         return self._create_request(endpoint)
 
     def get_asset_valuation(self, account_type=DONT_SEND):
-        endpoint = AssetValuation(
+        endpoint = AssetValuationEndpoint(
             query_params={'accountType': account_type}
         )
+        return self._create_request(endpoint)
+
+    def get_latest_tickers_for_all_pairs(self):
+        endpoint = LatestTickersForAllPairsEndpoint()
+        return self._create_request(endpoint)
+
+    def get_uid(self):
+        endpoint = UIDEndpoint()
         return self._create_request(endpoint)
