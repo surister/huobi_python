@@ -11,17 +11,16 @@ TODO
 ### Features:
   - [ ] Fully Support the Rest Api
     - [ ] Common API Category
-    - [ ] Market Data API Category
+    - [x] Market Data API Category
     - [ ] Account API Category
     - [ ] Order API Category
     - [ ] Margin API Category
     - [ ] Cross Margin API Category
-  - [ ] 
     - [x] Basic project structure
     - [x] API authentication
     - [x] Test first working endpoint
     - [ ] Test all marketplace data endpoints
-  - [ ] Fully Support the Wss Api
+  - [ ] Fully Support the WSS Api
 
 #### Common API Category Features
 - [ ] All Supported Trading Symbols
@@ -29,20 +28,20 @@ TODO
 - [ ] Current Timestamp
 
 #### Market Data API Category
-- [ ] Klines
-- [ ] Latest Aggregated Ticker
-- [ ] Latest Tickers for All Pairs
-- [ ] Market Depth
-- [ ] Last Trade
-- [ ] Most Recent Trades
-- [ ] Last 24h Market Summary
-- [ ] Real time NAV
+- [x] Klines
+- [x] Latest Aggregated Ticker
+- [x] Latest Tickers for All Pairs
+- [x] Market Depth
+- [x] Last Trade
+- [x] Most Recent Trades
+- [x] Last 24h Market Summary
+- [x] Real time NAV
 
 #### Account API Category
 - [x] All Accounts of the Current User
 - [x] Account Balance of a Specific Account
 - [ ] Total Valuation of Platform Assets
-- [ ] Asset Valuation
+- [x] Asset Valuation
 - [ ] Asset Transfer
 - [ ] Account History
 - [ ] Account Ledger
