@@ -6,7 +6,7 @@ class CustomBaseException(Exception):
         return self.message
 
 
-class AccessSecretKeyNotProvided(CustomBaseException):
+class CredentialKeysNotProvided(CustomBaseException):
     """
     Raised when one of the Required Keys is not provided
     """
