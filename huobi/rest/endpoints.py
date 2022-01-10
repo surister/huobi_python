@@ -103,3 +103,37 @@ class MarketDepthEndpoint(Endpoint):
                     'depth': DONT_SEND,
                     'type': DONT_SEND
                     }
+
+
+@dataclass
+class LastTradeEndpoint(Endpoint):
+    name: str = 'market/LastTrade'
+    raw_path: str = '/market/trade'
+    method: HttpMethod = HttpMethod.GET
+    query_params = {'symbol': DONT_SEND}
+
+
+@dataclass
+class MostRecentTradesEndpoint(Endpoint):
+    name: str = 'market/MostRecentTrades'
+    raw_path: str = '/market/history/trade'
+    method: HttpMethod = HttpMethod.GET
+    query_params = {'symbol': DONT_SEND,
+                    'size': DONT_SEND
+                    }
+
+
+@dataclass
+class LastDayMarketSummaryEndpoint(Endpoint):
+    name: str = 'market/LastDayMarketSummary'
+    raw_path: str = '/market/detail/'
+    method: HttpMethod = HttpMethod.GET
+    query_params = {'symbol': DONT_SEND}
+
+
+@dataclass
+class RealTimeNAVEndpoint(Endpoint):
+    name: str = 'market/RealTimeNAV'
+    raw_path: str = '/market/etp'
+    method: HttpMethod = HttpMethod.GET
+    query_params = {'symbol': DONT_SEND}
