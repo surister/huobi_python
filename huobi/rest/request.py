@@ -48,7 +48,7 @@ class HuobiRequest:
             secret_key=self.secret_key,
             url=self.url,
             params=params,
-            endpoint=self.endpoint
+            endpoint=self.endpoint,
         )
 
         return self.url.full_with_attrs(

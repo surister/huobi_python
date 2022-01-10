@@ -1,10 +1,21 @@
 from typing import Union
 
 from huobi.rest.constants import REST_API_HUOBI_URL
-from huobi.rest.endpoints import AccountsEndpoint, AccountBalanceEndpoint, AssetValuationEndpoint, DONT_SEND, \
-    LatestTickersForAllPairsEndpoint, UIDEndpoint, AggregatedBalanceEndpoint, CandlesEndpoint, \
-    LatestAggregatedTickerEndpoint, MarketDepthEndpoint, MostRecentTradesEndpoint, LastTradeEndpoint, \
-    LastDayMarketSummaryEndpoint
+from huobi.rest.endpoints import (
+    AccountsEndpoint,
+    AccountBalanceEndpoint,
+    AssetValuationEndpoint,
+    DONT_SEND,
+    LatestTickersForAllPairsEndpoint,
+    UIDEndpoint,
+    AggregatedBalanceEndpoint,
+    CandlesEndpoint,
+    LatestAggregatedTickerEndpoint,
+    MarketDepthEndpoint,
+    MostRecentTradesEndpoint,
+    LastTradeEndpoint,
+    LastDayMarketSummaryEndpoint,
+)
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
 from huobi.rest.exceptions import CredentialKeysNotProvided
@@ -62,10 +73,11 @@ class HuobiClient:
 
     def get_candles(self, *, symbol, period, size=DONT_SEND):
         endpoint = CandlesEndpoint(
-            query_params={'symbol': symbol,
-                          'period': period,
-                          'size': size
-                          }
+            query_params={
+                'symbol': symbol,
+                'period': period,
+                'size': size,
+            }
         )
         return self._create_request(endpoint)
 
@@ -75,12 +87,13 @@ class HuobiClient:
         )
         return self._create_request(endpoint)
 
-    def get_market_depth(self, *, symbol, depth=DONT_SEND, type_step):
+    def get_market_depth(self, *, symbol, type_step, depth=DONT_SEND):
         endpoint = MarketDepthEndpoint(
-            query_params={'symbol': symbol,
-                          'depth': depth,
-                          'type': type_step
-                          }
+            query_params={
+                'symbol': symbol,
+                'type': type_step,
+                'depth': depth,
+            }
         )
         return self._create_request(endpoint)
 
