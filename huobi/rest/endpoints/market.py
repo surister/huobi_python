@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from huobi.rest.endpoints import Endpoint, DONT_SEND
+from huobi.rest.endpoints import DONT_SEND, Endpoint
 from huobi.rest.enums import HttpMethod
 
 

@@ -11,4 +11,3 @@ class CredentialKeysNotProvided(CustomBaseException):
     Raised when one of the Required Keys is not provided
     """
     pass
-

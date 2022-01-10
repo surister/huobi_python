@@ -51,6 +51,11 @@ TODO
 
 
 ### Changelog
-#### 2022-01-07 
+#### 2022-01-07 - 2022-01-09
 * Add basic project structure
 * Add working API authentication
+* Add endpoint/request scheme
+* Add all market endpoints
+* Add some account & user endpoints
+* Add flake8 testing
+### 2022-1-10 

@@ -2,23 +2,23 @@ from typing import Union
 
 from huobi.rest.constants import REST_API_HUOBI_URL
 from huobi.rest.endpoints import (
-    AccountsEndpoint,
     AccountBalanceEndpoint,
-    AssetValuationEndpoint,
-    DONT_SEND,
-    LatestTickersForAllPairsEndpoint,
-    UIDEndpoint,
+    AccountsEndpoint,
     AggregatedBalanceEndpoint,
+    AssetValuationEndpoint,
     CandlesEndpoint,
+    DONT_SEND,
+    LastDayMarketSummaryEndpoint,
+    LastTradeEndpoint,
     LatestAggregatedTickerEndpoint,
+    LatestTickersForAllPairsEndpoint,
     MarketDepthEndpoint,
     MostRecentTradesEndpoint,
-    LastTradeEndpoint,
-    LastDayMarketSummaryEndpoint,
+    UIDEndpoint,
 )
+from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
-from huobi.rest.exceptions import CredentialKeysNotProvided
 
 
 class Client:
@@ -26,7 +26,11 @@ class Client:
 
 
 class HuobiClient:
-    def __init__(self, *, access_key: str, secret_key: str, url: Union[Url, str] = REST_API_HUOBI_URL):
+    def __init__(self,
+                 *,
+                 access_key: str,
+                 secret_key: str,
+                 url: Union[Url, str] = REST_API_HUOBI_URL):
         self.access_key = access_key
         self.secret_key = secret_key
         self.huobi_api_url = Url(url) if isinstance(url, str) else url

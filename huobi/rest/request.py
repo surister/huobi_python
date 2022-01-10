@@ -1,11 +1,11 @@
 import urllib.parse
 from datetime import datetime
 
-import requests
-
 from huobi.rest.endpoints import Endpoint
 from huobi.rest.url import Url
 from huobi.rest.utils import generate_hmac256_signature
+
+import requests
 
 
 class HuobiRequest:

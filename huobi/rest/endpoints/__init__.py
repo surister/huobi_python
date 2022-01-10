@@ -1,16 +1,19 @@
-from huobi.rest.endpoints.account import AccountsEndpoint, AccountBalanceEndpoint, AssetValuationEndpoint
-from huobi.rest.endpoints.users import AggregatedBalanceEndpoint, UIDEndpoint
-from huobi.rest.endpoints.endpoint import Endpoint, DONT_SEND
+from huobi.rest.endpoints.account import (
+    AccountBalanceEndpoint,
+    AccountsEndpoint,
+    AssetValuationEndpoint,
+)
+from huobi.rest.endpoints.endpoint import DONT_SEND, Endpoint
 from huobi.rest.endpoints.market import (
-    MostRecentTradesEndpoint,
+    CandlesEndpoint,
     LastDayMarketSummaryEndpoint,
     LastTradeEndpoint,
-    MarketDepthEndpoint,
     LatestAggregatedTickerEndpoint,
-    CandlesEndpoint,
     LatestTickersForAllPairsEndpoint,
+    MarketDepthEndpoint,
+    MostRecentTradesEndpoint,
 )
-
+from huobi.rest.endpoints.users import AggregatedBalanceEndpoint, UIDEndpoint
 
 __all__ = [
     'Endpoint',
