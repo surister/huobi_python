@@ -4,6 +4,8 @@ from huobi.rest.constants import REST_API_HUOBI_URL
 from huobi.rest.endpoints import (
     AccountBalanceEndpoint,
     AccountsEndpoint,
+    AccountHistoryEndpoint,
+    AccountLedgerEndpoint,
     AggregatedBalanceEndpoint,
     AssetValuationEndpoint,
     CandlesEndpoint,
@@ -14,9 +16,9 @@ from huobi.rest.endpoints import (
     LatestTickersForAllPairsEndpoint,
     MarketDepthEndpoint,
     MostRecentTradesEndpoint,
+    PointBalanceEndpoint,
     UIDEndpoint,
 )
-from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
 from huobi.rest.exceptions import CredentialKeysNotProvided
@@ -127,8 +129,9 @@ class HuobiClient:
         )
         return self._create_request(endpoint)
 
-    def get_account_history(self, *, account_id, currency=DONT_SEND, transant_types=DONT_SEND, start_time=DONT_SEND,
-                            end_time=DONT_SEND, sort=DONT_SEND, size=DONT_SEND, from_id=DONT_SEND):
+    def get_account_history(self, *, account_id, currency=DONT_SEND, transant_types=DONT_SEND,
+                            start_time=DONT_SEND, end_time=DONT_SEND, sort=DONT_SEND,
+                            size=DONT_SEND, from_id=DONT_SEND):
         endpoint = AccountHistoryEndpoint(
             query_params={'account-id': account_id,
                           'currency': currency,
@@ -141,12 +144,14 @@ class HuobiClient:
         )
         return self._create_request(endpoint)
 
-    def get_account_ledger(self, *, account_id, currency=DONT_SEND, transant_types=DONT_SEND, start_time=DONT_SEND,
-                           end_time=DONT_SEND, sort=DONT_SEND, size=DONT_SEND, limit=DONT_SEND, from_id=DONT_SEND):
+    def get_account_ledger(self, *, account_id, currency=DONT_SEND,
+                           transact_types=DONT_SEND, start_time=DONT_SEND,
+                           end_time=DONT_SEND, sort=DONT_SEND, size=DONT_SEND,
+                           limit=DONT_SEND, from_id=DONT_SEND):
         endpoint = AccountLedgerEndpoint(
             query_params={'accountId': account_id,
                           'currency': currency,
-                          'transactTypes': transant_types,
+                          'transactTypes': transact_types,
                           'startTime': start_time,
                           'endTime': end_time,
                           'sort': sort,
