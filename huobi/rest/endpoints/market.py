@@ -1,7 +1,78 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
-from huobi.rest.endpoints import DONT_SEND, Endpoint
 from huobi.rest.enums import HttpMethod
+
+
+class _DONT_SEND_IF_NONE:
+    def __repr__(self):
+        return 'DONT_SEND_IF_NONE'
+
+
+DONT_SEND = _DONT_SEND_IF_NONE()
+
+
+@dataclass
+class Endpoint:
+    name: str
+    raw_path: str
+    method: HttpMethod
+    path_params: dict = field(default_factory=dict)
+    query_params: dict = field(default_factory=dict)
+
+    @property
+    def path(self):
+        return self.raw_path
+
+    @property
+    def prepared_query_params(self):
+        d = {}
+        for k, v in self.query_params.items():
+            if v is not DONT_SEND:
+                d.update({k: v})
+        return d
+
+
+@dataclass
+class AccountsEndpoint(Endpoint):
+    name: str = 'account/Account'
+    raw_path: str = '/v1/account/accounts'
+    method: HttpMethod = HttpMethod.GET
+
+
+@dataclass
+class AccountBalanceEndpoint(Endpoint):
+    name: str = 'account/Balance'
+    raw_path: str = '/v1/account/accounts/{account_id}/balance'
+    method: HttpMethod = HttpMethod.GET
+
+
+@dataclass
+class AssetValuationEndpoint(Endpoint):
+    name: str = 'account/Asset'
+    raw_path: str = '/v2/account/valuation'
+    method: HttpMethod = HttpMethod.GET
+    query_params = {'accountType': DONT_SEND}
+
+
+@dataclass
+class LatestTickersForAllPairsEndpoint(Endpoint):
+    name: str = 'market/LatestTickersAllPairs'
+    raw_path: str = '/market/tickers'
+    method: HttpMethod = HttpMethod.GET
+
+
+@dataclass
+class UIDEndpoint(Endpoint):
+    name: str = 'user/UID'
+    raw_path: str = '/v2/user/uid'
+    method: HttpMethod = HttpMethod.GET
+
+
+@dataclass
+class AggregatedBalanceEndpoint(Endpoint):
+    name: str = 'subuser/AggregatedBalance'
+    raw_path: str = '/v1/subuser/aggregate-balance'
+    method: HttpMethod = HttpMethod.GET
 
 
 @dataclass
@@ -11,7 +82,7 @@ class CandlesEndpoint(Endpoint):
     method: HttpMethod = HttpMethod.GET
     query_params = {'symbol': DONT_SEND,
                     'period': DONT_SEND,
-                    'size': DONT_SEND,
+                    'size': DONT_SEND
                     }
 
 
@@ -30,7 +101,7 @@ class MarketDepthEndpoint(Endpoint):
     method: HttpMethod = HttpMethod.GET
     query_params = {'symbol': DONT_SEND,
                     'depth': DONT_SEND,
-                    'type': DONT_SEND,
+                    'type': DONT_SEND
                     }
 
 
@@ -48,7 +119,7 @@ class MostRecentTradesEndpoint(Endpoint):
     raw_path: str = '/market/history/trade'
     method: HttpMethod = HttpMethod.GET
     query_params = {'symbol': DONT_SEND,
-                    'size': DONT_SEND,
+                    'size': DONT_SEND
                     }
 
 
@@ -69,7 +140,39 @@ class RealTimeNAVEndpoint(Endpoint):
 
 
 @dataclass
-class LatestTickersForAllPairsEndpoint(Endpoint):
-    name: str = 'market/LatestTickersAllPairs'
-    raw_path: str = '/market/tickers'
+class AccountHistoryEndpoint(Endpoint):
+    name: str = 'account/AccountHistory'
+    raw_path: str = '/v1/account/history'
     method: HttpMethod = HttpMethod.GET
+    query_params = {'account-id': DONT_SEND,
+                    'currency': DONT_SEND,
+                    'transact-types': DONT_SEND,
+                    'start-time': DONT_SEND,
+                    'end-time': DONT_SEND,
+                    'sort': DONT_SEND,
+                    'size': DONT_SEND,
+                    'from-id': DONT_SEND}
+
+
+@dataclass
+class AccountLedgerEndpoint(Endpoint):
+    name: str = 'account/AccountLedger'
+    raw_path: str = '/v2/account/ledger'
+    method: HttpMethod = HttpMethod.GET
+    query_params = {'accountId': DONT_SEND,
+                    'currency': DONT_SEND,
+                    'transactTypes': DONT_SEND,
+                    'startTime': DONT_SEND,
+                    'endTime': DONT_SEND,
+                    'sort': DONT_SEND,
+                    'size': DONT_SEND,
+                    'limit': DONT_SEND,
+                    'fromId': DONT_SEND}
+
+
+@dataclass
+class PointBalanceEndpoint(Endpoint):
+    name: str = 'account/PointBalance'
+    raw_path: str = '/v2/point/account'
+    method: HttpMethod = HttpMethod.GET
+    query_params = {'subUid': DONT_SEND}
