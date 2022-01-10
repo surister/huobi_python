@@ -3,7 +3,8 @@ from typing import Union
 from huobi.rest.constants import REST_API_HUOBI_URL
 from huobi.rest.endpoints import AccountsEndpoint, AccountBalanceEndpoint, AssetValuationEndpoint, DONT_SEND, \
     LatestTickersForAllPairsEndpoint, UIDEndpoint, AggregatedBalanceEndpoint, CandlesEndpoint, \
-    LatestAggregatedTickerEndpoint, MarketDepthEndpoint
+    LatestAggregatedTickerEndpoint, MarketDepthEndpoint, MostRecentTradesEndpoint, LastTradeEndpoint, \
+    LastDayMarketSummaryEndpoint
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
 from huobi.rest.exceptions import CredentialKeysNotProvided
@@ -80,5 +81,30 @@ class HuobiClient:
                           'depth': depth,
                           'type': type_step
                           }
+        )
+        return self._create_request(endpoint)
+
+    def get_last_trade(self, *, symbol):
+        endpoint = LastTradeEndpoint(
+            query_params={'symbol': symbol}
+        )
+        return self._create_request(endpoint)
+
+    def get_most_recent_trades(self, *, symbol, size=DONT_SEND):
+        endpoint = MostRecentTradesEndpoint(
+            query_params={'symbol': symbol,
+                          'size': size}
+        )
+        return self._create_request(endpoint)
+
+    def get_last_day_market_summary(self, *, symbol):
+        endpoint = LastDayMarketSummaryEndpoint(
+            query_params={'symbol': symbol}
+        )
+        return self._create_request(endpoint)
+
+    def get_real_time_nav(self, *, symbol):
+        endpoint = LastDayMarketSummaryEndpoint(
+            query_params={'symbol': symbol}
         )
         return self._create_request(endpoint)
