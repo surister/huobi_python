@@ -1,23 +1,33 @@
 from typing import Union
 
 from huobi.rest.constants import REST_API_HUOBI_URL
-from huobi.rest.endpoints import (
+from huobi.rest.endpoints import DONT_SEND
+from huobi.rest.endpoints.account import (
     AccountBalanceEndpoint,
     AccountsEndpoint,
     AccountHistoryEndpoint,
     AccountLedgerEndpoint,
-    AggregatedBalanceEndpoint,
     AssetValuationEndpoint,
+    PointBalanceEndpoint,
+)
+from huobi.rest.endpoints.users import (
+    ApiKeyQueryEndpoint,
+    AggregatedBalanceEndpoint,
+    UIDEndpoint,
+    SubUserListEndpoint,
+    SubUserStatusEndpoint,
+    DepositAddressSubUserEndpoint,
+    DepositHistorySubUser,
+)
+from huobi.rest.endpoints.market import (
     CandlesEndpoint,
-    DONT_SEND,
+    MarketDepthEndpoint,
+    MostRecentTradesEndpoint,
     LastDayMarketSummaryEndpoint,
     LastTradeEndpoint,
     LatestAggregatedTickerEndpoint,
     LatestTickersForAllPairsEndpoint,
-    MarketDepthEndpoint,
-    MostRecentTradesEndpoint,
-    UIDEndpoint,
-    PointBalanceEndpoint,
+    RealTimeNAVEndpoint,
 )
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
@@ -56,13 +66,17 @@ class HuobiClient:
 
     def get_balance(self, *, account_id):
         endpoint = AccountBalanceEndpoint(
-            path_params={'account_id': account_id},
+            path_params={
+                'account_id': account_id,
+            }
         )
         return self._create_request(endpoint)
 
     def get_asset_valuation(self, account_type=DONT_SEND):
         endpoint = AssetValuationEndpoint(
-            query_params={'accountType': account_type}
+            query_params={
+                'accountType': account_type,
+            }
         )
         return self._create_request(endpoint)
 
@@ -78,19 +92,21 @@ class HuobiClient:
         endpoint = AggregatedBalanceEndpoint()
         return self._create_request(endpoint)
 
-    def get_candles(self, *, symbol, period, size=DONT_SEND):
+    def get_candles(self, *, currency, period, size=DONT_SEND):
         endpoint = CandlesEndpoint(
             query_params={
-                'symbol': symbol,
+                'symbol': currency,
                 'period': period,
                 'size': size,
             }
         )
         return self._create_request(endpoint)
 
-    def get_latest_aggregated_ticker(self, *, symbol):
+    def get_latest_aggregated_ticker(self, *, currency):
         endpoint = LatestAggregatedTickerEndpoint(
-            query_params={'symbol': symbol}
+            query_params={
+                'symbol': currency,
+            }
         )
         return self._create_request(endpoint)
 
@@ -104,43 +120,53 @@ class HuobiClient:
         )
         return self._create_request(endpoint)
 
-    def get_last_trade(self, *, symbol):
+    def get_last_trade(self, *, currency):
         endpoint = LastTradeEndpoint(
-            query_params={'symbol': symbol}
+            query_params={
+                'symbol': currency,
+            }
         )
         return self._create_request(endpoint)
 
-    def get_most_recent_trades(self, *, symbol, size=DONT_SEND):
+    def get_most_recent_trades(self, *, currency, size=DONT_SEND):
         endpoint = MostRecentTradesEndpoint(
-            query_params={'symbol': symbol,
-                          'size': size}
+            query_params={
+                'symbol': currency,
+                'size': size,
+            }
         )
         return self._create_request(endpoint)
 
-    def get_last_day_market_summary(self, *, symbol):
+    def get_last_day_market_summary(self, *, currency):
         endpoint = LastDayMarketSummaryEndpoint(
-            query_params={'symbol': symbol}
+            query_params={
+                'symbol': currency,
+            }
         )
         return self._create_request(endpoint)
 
-    def get_real_time_nav(self, *, symbol):
-        endpoint = LastDayMarketSummaryEndpoint(
-            query_params={'symbol': symbol}
+    def get_real_time_nav(self, *, currency):
+        endpoint = RealTimeNAVEndpoint(
+            query_params={
+                'symbol': currency,
+            }
         )
         return self._create_request(endpoint)
 
-    def get_account_history(self, *, account_id, currency=DONT_SEND, transant_types=DONT_SEND,
+    def get_account_history(self, *, account_id, currency=DONT_SEND, transact_types=DONT_SEND,
                             start_time=DONT_SEND, end_time=DONT_SEND, sort=DONT_SEND,
                             size=DONT_SEND, from_id=DONT_SEND):
         endpoint = AccountHistoryEndpoint(
-            query_params={'account-id': account_id,
-                          'currency': currency,
-                          'transact-types': transant_types,
-                          'start-time': start_time,
-                          'end-time': end_time,
-                          'sort': sort,
-                          'size': size,
-                          'from-id': from_id}
+            query_params={
+                'account-id': account_id,
+                'currency': currency,
+                'transact-types': transact_types,
+                'start-time': start_time,
+                'end-time': end_time,
+                'sort': sort,
+                'size': size,
+                'from-id': from_id,
+            }
         )
         return self._create_request(endpoint)
 
@@ -149,20 +175,73 @@ class HuobiClient:
                            end_time=DONT_SEND, sort=DONT_SEND, size=DONT_SEND,
                            limit=DONT_SEND, from_id=DONT_SEND):
         endpoint = AccountLedgerEndpoint(
-            query_params={'accountId': account_id,
-                          'currency': currency,
-                          'transactTypes': transact_types,
-                          'startTime': start_time,
-                          'endTime': end_time,
-                          'sort': sort,
-                          'size': size,
-                          'limit': limit,
-                          'fromId': from_id}
+            query_params={
+                'accountId': account_id,
+                'currency': currency,
+                'transactTypes': transact_types,
+                'startTime': start_time,
+                'endTime': end_time,
+                'sort': sort,
+                'size': size,
+                'limit': limit,
+                'fromId': from_id,
+            }
         )
         return self._create_request(endpoint)
 
     def get_point_balance(self, sub_uid=DONT_SEND):
         endpoint = PointBalanceEndpoint(
             query_params={'subUid': sub_uid}
+        )
+        return self._create_request(endpoint)
+
+    def get_api_key(self, *, uid, access_key=DONT_SEND):
+        endpoint = ApiKeyQueryEndpoint(
+            query_params={
+                'uid': uid,
+                'accessKey': access_key,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_sub_user_list(self, *, from_id=DONT_SEND):
+        endpoint = SubUserListEndpoint(
+            query_params={
+                'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_sub_user_status(self, *, sub_uid):
+        endpoint = SubUserStatusEndpoint(
+            query_params={
+                'subUid': sub_uid,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_deposit_address_sub_user(self, *, sub_uid, currency):
+        endpoint = DepositAddressSubUserEndpoint(
+            query_params={
+                'subUid': sub_uid,
+                'currency': currency,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_deposit_history_sub_user(self, *, sub_uid, currency=DONT_SEND,
+                                     start_time=DONT_SEND, end_time=DONT_SEND,
+                                     sort=DONT_SEND, limit=DONT_SEND,
+                                     from_id=DONT_SEND):
+        endpoint = DepositHistorySubUser(
+            query_params={
+                'subUid': sub_uid,
+                'currency': currency,
+                'startTime': start_time,
+                'endTime': end_time,
+                'sort': sort,
+                'limit': limit,
+                'fromId': from_id,
+            }
         )
         return self._create_request(endpoint)
