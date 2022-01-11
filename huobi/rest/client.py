@@ -4,6 +4,8 @@ from huobi.rest.constants import REST_API_HUOBI_URL
 from huobi.rest.endpoints import (
     AccountBalanceEndpoint,
     AccountsEndpoint,
+    AccountHistoryEndpoint,
+    AccountLedgerEndpoint,
     AggregatedBalanceEndpoint,
     AssetValuationEndpoint,
     CandlesEndpoint,
@@ -15,6 +17,7 @@ from huobi.rest.endpoints import (
     MarketDepthEndpoint,
     MostRecentTradesEndpoint,
     UIDEndpoint,
+    PointBalanceEndpoint,
 )
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
@@ -123,5 +126,43 @@ class HuobiClient:
     def get_real_time_nav(self, *, symbol):
         endpoint = LastDayMarketSummaryEndpoint(
             query_params={'symbol': symbol}
+        )
+        return self._create_request(endpoint)
+
+    def get_account_history(self, *, account_id, currency=DONT_SEND, transant_types=DONT_SEND,
+                            start_time=DONT_SEND, end_time=DONT_SEND, sort=DONT_SEND,
+                            size=DONT_SEND, from_id=DONT_SEND):
+        endpoint = AccountHistoryEndpoint(
+            query_params={'account-id': account_id,
+                          'currency': currency,
+                          'transact-types': transant_types,
+                          'start-time': start_time,
+                          'end-time': end_time,
+                          'sort': sort,
+                          'size': size,
+                          'from-id': from_id}
+        )
+        return self._create_request(endpoint)
+
+    def get_account_ledger(self, *, account_id, currency=DONT_SEND,
+                           transact_types=DONT_SEND, start_time=DONT_SEND,
+                           end_time=DONT_SEND, sort=DONT_SEND, size=DONT_SEND,
+                           limit=DONT_SEND, from_id=DONT_SEND):
+        endpoint = AccountLedgerEndpoint(
+            query_params={'accountId': account_id,
+                          'currency': currency,
+                          'transactTypes': transact_types,
+                          'startTime': start_time,
+                          'endTime': end_time,
+                          'sort': sort,
+                          'size': size,
+                          'limit': limit,
+                          'fromId': from_id}
+        )
+        return self._create_request(endpoint)
+
+    def get_point_balance(self, sub_uid=DONT_SEND):
+        endpoint = PointBalanceEndpoint(
+            query_params={'subUid': sub_uid}
         )
         return self._create_request(endpoint)

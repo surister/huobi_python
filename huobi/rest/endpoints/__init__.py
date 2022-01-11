@@ -1,7 +1,10 @@
 from huobi.rest.endpoints.account import (
     AccountBalanceEndpoint,
     AccountsEndpoint,
+    AccountHistoryEndpoint,
+    AccountLedgerEndpoint,
     AssetValuationEndpoint,
+    PointBalanceEndpoint,
 )
 from huobi.rest.endpoints.endpoint import DONT_SEND, Endpoint
 from huobi.rest.endpoints.market import (
@@ -19,6 +22,8 @@ __all__ = [
     'Endpoint',
     'AccountsEndpoint',
     'AccountBalanceEndpoint',
+    'AccountHistoryEndpoint',
+    'AccountLedgerEndpoint',
     'AssetValuationEndpoint',
     'DONT_SEND',
     'LatestTickersForAllPairsEndpoint',
@@ -30,4 +35,5 @@ __all__ = [
     'MostRecentTradesEndpoint',
     'LastTradeEndpoint',
     'LastDayMarketSummaryEndpoint',
+    'PointBalanceEndpoint',
 ]
