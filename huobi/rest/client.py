@@ -10,15 +10,6 @@ from huobi.rest.endpoints.account import (
     AssetValuationEndpoint,
     PointBalanceEndpoint,
 )
-from huobi.rest.endpoints.users import (
-    ApiKeyQueryEndpoint,
-    AggregatedBalanceEndpoint,
-    UIDEndpoint,
-    SubUserListEndpoint,
-    SubUserStatusEndpoint,
-    DepositAddressSubUserEndpoint,
-    DepositHistorySubUser,
-)
 from huobi.rest.endpoints.market import (
     CandlesEndpoint,
     MarketDepthEndpoint,
@@ -28,6 +19,15 @@ from huobi.rest.endpoints.market import (
     LatestAggregatedTickerEndpoint,
     LatestTickersForAllPairsEndpoint,
     RealTimeNAVEndpoint,
+)
+from huobi.rest.endpoints.users import (
+    ApiKeyQueryEndpoint,
+    AggregatedBalanceEndpoint,
+    UIDEndpoint,
+    SubUserListEndpoint,
+    SubUserStatusEndpoint,
+    DepositAddressSubUserEndpoint,
+    DepositHistorySubUser,
 )
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
@@ -153,9 +153,15 @@ class HuobiClient:
         )
         return self._create_request(endpoint)
 
-    def get_account_history(self, *, account_id, currency=DONT_SEND, transact_types=DONT_SEND,
-                            start_time=DONT_SEND, end_time=DONT_SEND, sort=DONT_SEND,
-                            size=DONT_SEND, from_id=DONT_SEND):
+    def get_account_history(self, *,
+                            account_id,
+                            currency=DONT_SEND,
+                            transact_types=DONT_SEND,
+                            start_time=DONT_SEND,
+                            end_time=DONT_SEND,
+                            sort=DONT_SEND,
+                            size=DONT_SEND,
+                            from_id=DONT_SEND):
         endpoint = AccountHistoryEndpoint(
             query_params={
                 'account-id': account_id,
@@ -170,10 +176,17 @@ class HuobiClient:
         )
         return self._create_request(endpoint)
 
-    def get_account_ledger(self, *, account_id, currency=DONT_SEND,
-                           transact_types=DONT_SEND, start_time=DONT_SEND,
-                           end_time=DONT_SEND, sort=DONT_SEND, size=DONT_SEND,
-                           limit=DONT_SEND, from_id=DONT_SEND):
+    def get_account_ledger(self,
+                           *,
+                           account_id,
+                           currency=DONT_SEND,
+                           transact_types=DONT_SEND,
+                           start_time=DONT_SEND,
+                           end_time=DONT_SEND,
+                           sort=DONT_SEND,
+                           size=DONT_SEND,
+                           limit=DONT_SEND,
+                           from_id=DONT_SEND):
         endpoint = AccountLedgerEndpoint(
             query_params={
                 'accountId': account_id,
@@ -229,9 +242,14 @@ class HuobiClient:
         )
         return self._create_request(endpoint)
 
-    def get_deposit_history_sub_user(self, *, sub_uid, currency=DONT_SEND,
-                                     start_time=DONT_SEND, end_time=DONT_SEND,
-                                     sort=DONT_SEND, limit=DONT_SEND,
+    def get_deposit_history_sub_user(self,
+                                     *,
+                                     sub_uid,
+                                     currency=DONT_SEND,
+                                     start_time=DONT_SEND,
+                                     end_time=DONT_SEND,
+                                     sort=DONT_SEND,
+                                     limit=DONT_SEND,
                                      from_id=DONT_SEND):
         endpoint = DepositHistorySubUser(
             query_params={
