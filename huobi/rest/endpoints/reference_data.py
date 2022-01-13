@@ -6,35 +6,35 @@ from huobi.rest.enums import HttpMethod
 
 @dataclass
 class MarketStatusEndpoint(Endpoint):
-    name: str = 'RData/SystemStatus'
+    name: str = 'ReferenceDATA/SystemStatus'
     raw_path: str = '/v2/market-status'
     method: HttpMethod = HttpMethod.GET
 
 
 @dataclass
 class AllSupportedTradingSymbolsEndpoint(Endpoint):
-    name: str = 'RData/MarketStatus'
+    name: str = 'ReferenceData/MarketStatus'
     raw_path: str = '/v1/common/symbols'
     method: HttpMethod = HttpMethod.GET
 
 
 @dataclass
 class AllSupportedCurrenciesEndpoint(Endpoint):
-    name: str = 'RData/AllSuportedCurrencies'
-    raw_path: str = '/v1/common/currencys'
+    name: str = 'ReferenceData/AllSupportedCurrencies'
+    raw_path: str = '/v1/common/currencies'
     method: HttpMethod = HttpMethod.GET
 
 
 @dataclass
 class CurrentTimestampEndpoint(Endpoint):
-    name: str = 'RData/CurrentTimestamp'
+    name: str = 'ReferenceData/CurrentTimestamp'
     raw_path: str = '/v1/common/timestamp'
     method: HttpMethod = HttpMethod.GET
 
 
 @dataclass
 class CurrencyChainsEndpoint(Endpoint):
-    name: str = 'RData/CurrentTimestamp'
+    name: str = 'ReferenceData/CurrentTimestamp'
     raw_path: str = '/v2/reference/currencies'
     method: HttpMethod = HttpMethod.GET
     query_params = {
