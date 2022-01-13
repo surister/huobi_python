@@ -351,7 +351,7 @@ class HuobiClient:
         return self._create_request(endpoint)
 
     def get_search_for_existed_withdraws_and_deposits(self, *, currency=DONT_SEND, transfer_type,
-                                                      from_id=DONT_SEND,size=DONT_SEND,
+                                                      from_id=DONT_SEND, size=DONT_SEND,
                                                       direct=DONT_SEND):
         endpoint = SearchForExistedWithdrawsAndDepositsEndpoint(
             query_params={
