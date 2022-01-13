@@ -5,13 +5,6 @@ from huobi.rest.enums import HttpMethod
 
 
 @dataclass
-class SystemStatusEndpoint(Endpoint):
-    name: str = 'RData/SystemStatus'
-    raw_path: str = 'https://status.huobigroup.com/api/v2/summary.json'
-    method: HttpMethod = HttpMethod.GET
-
-
-@dataclass
 class MarketStatusEndpoint(Endpoint):
     name: str = 'RData/SystemStatus'
     raw_path: str = '/v2/market-status'

@@ -1,6 +1,11 @@
 from typing import Union
 
-from huobi.rest.constants import REST_API_HUOBI_URL
+import requests
+
+from huobi.rest.constants import (
+    REST_API_HUOBI_URL,
+    REST_API_HUOBI_URL_SYSTEM_STATUS,
+)
 from huobi.rest.endpoints import DONT_SEND
 from huobi.rest.endpoints.account import (
     AccountBalanceEndpoint,
@@ -35,7 +40,6 @@ from huobi.rest.endpoints.reference_data import (
     CurrentTimestampEndpoint,
     CurrencyChainsEndpoint,
     MarketStatusEndpoint,
-    SystemStatusEndpoint,
 )
 
 from huobi.rest.exceptions import CredentialKeysNotProvided
@@ -299,6 +303,6 @@ class HuobiClient:
         endpoint = MarketStatusEndpoint()
         return self._create_request(endpoint)
 
-    def get_system_status(self):
-        endpoint = SystemStatusEndpoint()
-        return self._create_request(endpoint)
+    @staticmethod
+    def get_system_status():
+        return requests.get(REST_API_HUOBI_URL_SYSTEM_STATUS)

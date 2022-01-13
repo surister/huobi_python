@@ -30,7 +30,6 @@ from huobi.rest.endpoints.reference_data import (
     AllSupportedCurrenciesEndpoint,
     CurrencyChainsEndpoint,
     CurrentTimestampEndpoint,
-    SystemStatusEndpoint,
     MarketStatusEndpoint,
 )
 
@@ -61,6 +60,5 @@ __all__ = [
     'PointBalanceEndpoint',
     'SubUserListEndpoint',
     'SubUserStatusEndpoint',
-    'SystemStatusEndpoint',
-    'UIDEndpoint'
+    'UIDEndpoint',
 ]
