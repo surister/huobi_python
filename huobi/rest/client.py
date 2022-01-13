@@ -29,6 +29,15 @@ from huobi.rest.endpoints.users import (
     DepositAddressSubUserEndpoint,
     DepositHistorySubUser,
 )
+from huobi.rest.endpoints.reference_data import (
+    AllSupportedTradingSymbolsEndpoint,
+    AllSupportedCurrenciesEndpoint,
+    CurrentTimestampEndpoint,
+    CurrencyChainsEndpoint,
+    MarketStatusEndpoint,
+    SystemStatusEndpoint,
+)
+
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
@@ -262,4 +271,34 @@ class HuobiClient:
                 'fromId': from_id,
             }
         )
+        return self._create_request(endpoint)
+
+    def get_all_supported_trading_symbols(self):
+        endpoint = AllSupportedTradingSymbolsEndpoint()
+        return self._create_request(endpoint)
+
+    def get_all_supported_currencies(self):
+        endpoint = AllSupportedCurrenciesEndpoint()
+        return self._create_request(endpoint)
+
+    # TODO maybe it need a refactor
+    def get_currency_chains(self, currency=DONT_SEND, autorized_user=DONT_SEND):
+        endpoint = CurrencyChainsEndpoint(
+            query_params={
+                'currency': currency,
+                'authorizedUser': autorized_user,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_system_timestamp(self):
+        endpoint = CurrentTimestampEndpoint()
+        return self._create_request(endpoint)
+
+    def get_market_status(self):
+        endpoint = MarketStatusEndpoint()
+        return self._create_request(endpoint)
+
+    def get_system_status(self):
+        endpoint = SystemStatusEndpoint()
         return self._create_request(endpoint)
