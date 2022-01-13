@@ -303,6 +303,5 @@ class HuobiClient:
         endpoint = MarketStatusEndpoint()
         return self._create_request(endpoint)
 
-    @staticmethod
-    def get_system_status():
+    def get_system_status(self):
         return requests.get(REST_API_HUOBI_URL_SYSTEM_STATUS)
