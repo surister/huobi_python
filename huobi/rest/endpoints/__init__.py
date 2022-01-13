@@ -25,6 +25,13 @@ from huobi.rest.endpoints.users import (
     SubUserListEndpoint,
     SubUserStatusEndpoint,
 )
+from huobi.rest.endpoints.reference_data import (
+    AllSupportedTradingSymbolsEndpoint,
+    AllSupportedCurrenciesEndpoint,
+    CurrencyChainsEndpoint,
+    CurrentTimestampEndpoint,
+    MarketStatusEndpoint,
+)
 
 __all__ = [
     'AccountBalanceEndpoint',
@@ -32,9 +39,13 @@ __all__ = [
     'AccountLedgerEndpoint',
     'AccountsEndpoint',
     'AggregatedBalanceEndpoint',
+    'AllSupportedCurrenciesEndpoint',
+    'AllSupportedTradingSymbolsEndpoint',
     'ApiKeyQueryEndpoint',
     'AssetValuationEndpoint',
     'CandlesEndpoint',
+    'CurrencyChainsEndpoint',
+    'CurrentTimestampEndpoint',
     'DONT_SEND',
     'DepositAddressSubUserEndpoint',
     'DepositHistorySubUser',
@@ -44,9 +55,10 @@ __all__ = [
     'LatestAggregatedTickerEndpoint',
     'LatestTickersForAllPairsEndpoint',
     'MarketDepthEndpoint',
+    'MarketStatusEndpoint',
     'MostRecentTradesEndpoint',
     'PointBalanceEndpoint',
     'SubUserListEndpoint',
     'SubUserStatusEndpoint',
-    'UIDEndpoint'
+    'UIDEndpoint',
 ]
