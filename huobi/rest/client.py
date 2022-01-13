@@ -41,6 +41,13 @@ from huobi.rest.endpoints.reference_data import (
     CurrencyChainsEndpoint,
     MarketStatusEndpoint,
 )
+from huobi.rest.endpoints.wallet import (
+    QueryDepositAddressEndpoint,
+    QueryWithdrawalOrderByClientOrderIdEndpoint,
+    QueryWithdrawQuotaEndpoint,
+    QueryWithdrawAddressEndpoint,
+    SearchForExistedWithdrawsAndDepositsEndpoint,
+)
 
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
@@ -305,3 +312,54 @@ class HuobiClient:
 
     def get_system_status(self):
         return requests.get(REST_API_HUOBI_URL_SYSTEM_STATUS)
+
+    def get_query_deposit_address(self, *, currency):
+        endpoint = QueryDepositAddressEndpoint(
+            query_params={
+                'currency': currency,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_withdraw_quota(self, *, currency):
+        endpoint = QueryWithdrawQuotaEndpoint(
+            query_params={
+                'currency': currency,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_withdraw_address(self, *, currency, chain=DONT_SEND, note=DONT_SEND,
+                                   limit=DONT_SEND, from_id=DONT_SEND):
+        endpoint = QueryWithdrawAddressEndpoint(
+            query_params={
+                'currency': currency,
+                'chain': chain,
+                'note': note,
+                'limit': limit,
+                'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_withdrawal_order_by_client_order_id(self, *, client_order_id):
+        endpoint = QueryWithdrawalOrderByClientOrderIdEndpoint(
+            query_params={
+                'clientOrderId': client_order_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_search_for_existed_withdraws_and_deposits(self, *, currency=DONT_SEND, transfer_type,
+                                                      from_id=DONT_SEND,size=DONT_SEND,
+                                                      direct=DONT_SEND):
+        endpoint = SearchForExistedWithdrawsAndDepositsEndpoint(
+            query_params={
+                'currency': currency,
+                'type': transfer_type,
+                'from': from_id,
+                'size': size,
+                'direct': direct,
+            }
+        )
+        return self._create_request(endpoint)

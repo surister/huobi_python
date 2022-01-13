@@ -32,6 +32,13 @@ from huobi.rest.endpoints.reference_data import (
     CurrentTimestampEndpoint,
     MarketStatusEndpoint,
 )
+from huobi.rest.endpoints.wallet import (
+    QueryDepositAddressEndpoint,
+    QueryWithdrawAddressEndpoint,
+    QueryWithdrawQuotaEndpoint,
+    QueryWithdrawalOrderByClientOrderIdEndpoint,
+    SearchForExistedWithdrawsAndDepositsEndpoint,
+)
 
 __all__ = [
     'AccountBalanceEndpoint',
@@ -58,6 +65,11 @@ __all__ = [
     'MarketStatusEndpoint',
     'MostRecentTradesEndpoint',
     'PointBalanceEndpoint',
+    'QueryDepositAddressEndpoint',
+    'QueryWithdrawAddressEndpoint',
+    'QueryWithdrawQuotaEndpoint',
+    'QueryWithdrawalOrderByClientOrderIdEndpoint',
+    'SearchForExistedWithdrawsAndDepositsEndpoint',
     'SubUserListEndpoint',
     'SubUserStatusEndpoint',
     'UIDEndpoint',
