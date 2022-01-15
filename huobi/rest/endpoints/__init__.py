@@ -39,6 +39,15 @@ from huobi.rest.endpoints.wallet import (
     QueryWithdrawalOrderByClientOrderIdEndpoint,
     SearchForExistedWithdrawsAndDepositsEndpoint,
 )
+from huobi.rest.endpoints.trading import (
+    AllOpenOrdersEndpoint,
+    CurrentFeeRateAppliedToTheUserEndpoint,
+    OrderDetailOfAClientOrderIdEndpoint,
+    OrderDetailOfAnOrderEndpoint,
+    SearchPastOrdersEndpoint,
+    SearchMatchResultEndpoint,
+    SearchHistoricalOrdersWithinTwoDaysEndpoint,
+)
 
 __all__ = [
     'AccountBalanceEndpoint',
@@ -48,11 +57,13 @@ __all__ = [
     'AggregatedBalanceEndpoint',
     'AllSupportedCurrenciesEndpoint',
     'AllSupportedTradingSymbolsEndpoint',
+    'AllOpenOrdersEndpoint',
     'ApiKeyQueryEndpoint',
     'AssetValuationEndpoint',
     'CandlesEndpoint',
     'CurrencyChainsEndpoint',
     'CurrentTimestampEndpoint',
+    'CurrentFeeRateAppliedToTheUserEndpoint',
     'DONT_SEND',
     'DepositAddressSubUserEndpoint',
     'DepositHistorySubUser',
@@ -65,6 +76,11 @@ __all__ = [
     'MarketStatusEndpoint',
     'MostRecentTradesEndpoint',
     'PointBalanceEndpoint',
+    'OrderDetailOfAClientOrderIdEndpoint',
+    'OrderDetailOfAnOrderEndpoint',
+    'SearchPastOrdersEndpoint',
+    'SearchMatchResultEndpoint',
+    'SearchHistoricalOrdersWithinTwoDaysEndpoint',
     'QueryDepositAddressEndpoint',
     'QueryWithdrawAddressEndpoint',
     'QueryWithdrawQuotaEndpoint',
