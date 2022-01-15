@@ -48,6 +48,16 @@ from huobi.rest.endpoints.wallet import (
     QueryWithdrawAddressEndpoint,
     SearchForExistedWithdrawsAndDepositsEndpoint,
 )
+from huobi.rest.endpoints.trading import (
+    AllOpenOrdersEndpoint,
+    CurrentFeeRateAppliedToTheUserEndpoint,
+    MatchResultOfAnOrderEndpoint,
+    OrderDetailOfAClientOrderIdEndpoint,
+    OrderDetailOfAnOrderEndpoint,
+    SearchPastOrdersEndpoint,
+    SearchMatchResultEndpoint,
+    SearchHistoricalOrdersWithinTwoDaysEndpoint,
+)
 
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
@@ -360,6 +370,99 @@ class HuobiClient:
                 'from': from_id,
                 'size': size,
                 'direct': direct,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_all_open_borders(self, account_id=DONT_SEND, currency=DONT_SEND, side=DONT_SEND,
+                             from_id=DONT_SEND, direct=DONT_SEND, size=DONT_SEND):
+        endpoint = AllOpenOrdersEndpoint(
+            query_params={
+                'account-id': account_id,
+                'symbol': currency,
+                'side': side,
+                'from': from_id,
+                'direct': direct,
+                'size': size,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_current_fee_rate_applied_to_the_user(self, *, currencies):
+        endpoint = CurrentFeeRateAppliedToTheUserEndpoint(
+            query_params={
+                'symbols': currencies,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_order_detail_of_an_order(self, *, order_id):
+        endpoint = OrderDetailOfAnOrderEndpoint(
+            path_params={
+                'order_id': order_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_order_detail_of_a_client_oder_id(self, *, client_order_id):
+        endpoint = OrderDetailOfAClientOrderIdEndpoint(
+            query_params={
+                'clientOrderId': client_order_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_match_result_of_an_order(self, *, order_id):
+        endpoint = MatchResultOfAnOrderEndpoint(
+            path_params={
+                'order_id': order_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_search_past_orders(self, *, currency, types=DONT_SEND,
+                               start_time=DONT_SEND, end_time=DONT_SEND,
+                               states, from_id=DONT_SEND, direct=DONT_SEND,
+                               size=DONT_SEND):
+        endpoint = SearchPastOrdersEndpoint(
+            query_params={
+                'symbol': currency,
+                'types': types,
+                'start-time': start_time,
+                'end-time': end_time,
+                'states': states,
+                'from': from_id,
+                'direct': direct,
+                'size': size,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_search_historical_order_within_two_days(self, *, currency=DONT_SEND, start_time=DONT_SEND,
+                                                    end_time=DONT_SEND, direct=DONT_SEND, size=DONT_SEND):
+        endpoint = SearchHistoricalOrdersWithinTwoDaysEndpoint(
+            query_params={
+                'symbol': currency,
+                'start-time': start_time,
+                'end-time': end_time,
+                'direct': direct,
+                'size': size,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_search_match_result(self, *, currency, types=DONT_SEND, start_time=DONT_SEND,
+                                end_time=DONT_SEND, from_id=DONT_SEND, direct=DONT_SEND,
+                                size=DONT_SEND):
+        endpoint = SearchMatchResultEndpoint(
+            query_params={
+                'symbol': currency,
+                'types': types,
+                'start-time': start_time,
+                'end-time': end_time,
+                'from': from_id,
+                'direct': direct,
+                'size': size,
             }
         )
         return self._create_request(endpoint)
