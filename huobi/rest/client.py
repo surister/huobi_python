@@ -48,6 +48,11 @@ from huobi.rest.endpoints.wallet import (
     QueryWithdrawAddressEndpoint,
     SearchForExistedWithdrawsAndDepositsEndpoint,
 )
+from huobi.rest.endpoints.conditional_orders import (
+    QueryConditionalOrderHistoryEndpoint,
+    QuerySpecificConditionalOrderEndpoint,
+    QueryOpenConditionalOrdersBeforeTriggeringEndpoint,
+)
 
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
@@ -360,6 +365,50 @@ class HuobiClient:
                 'from': from_id,
                 'size': size,
                 'direct': direct,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_conditional_order_history(self, *, account_id=DONT_SEND, currency, order_side=DONT_SEND,
+                                            order_type=DONT_SEND, order_status, start_time=DONT_SEND,
+                                            end_time=DONT_SEND, sort=DONT_SEND, limit=DONT_SEND,
+                                            from_id=DONT_SEND):
+        endpoint = QueryConditionalOrderHistoryEndpoint(
+            query_params={
+                'accountId': account_id,
+                'symbol': currency,
+                'orderSide': order_side,
+                'orderType': order_type,
+                'orderStatus': order_status,
+                'startTime': start_time,
+                'endTime': end_time,
+                'sort': sort,
+                'limit': limit,
+                'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_specific_conditional_order(self, *, client_order_id):
+        endpoint = QuerySpecificConditionalOrderEndpoint(
+            query_params={
+                'clientOrderId': client_order_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_open_conditional_orders_before_triggering(self, account_id=DONT_SEND, currency=DONT_SEND,
+                                                            order_side=DONT_SEND, order_type=DONT_SEND,
+                                                            sort=DONT_SEND, limit=DONT_SEND, from_id=DONT_SEND):
+        endpoint = QueryOpenConditionalOrdersBeforeTriggeringEndpoint(
+            query_params={
+                'accountId': account_id,
+                'symbol': currency,
+                'orderSide': order_side,
+                'orderType': order_type,
+                'sort': sort,
+                'limit': limit,
+                'fromId': from_id,
             }
         )
         return self._create_request(endpoint)
