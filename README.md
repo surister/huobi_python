@@ -28,33 +28,33 @@
 
 
 ## Current Services
-- REST API <img aling="left" on_click='' width="15px" onclick=false src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
-- WEBSOCKET API <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- REST API ❌
+- WEBSOCKET API ❌
 
 ## REST API Endpoints
-- Reference Data <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Light_green_check.svg/600px-Light_green_check.svg.png"/>
+- Reference Data ✔️
 
-- Market Data <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Light_green_check.svg/600px-Light_green_check.svg.png"/>
+- Market Data ✔️
 
-- Account <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- Account ❌
 
-- Wallet <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- Wallet ❌
 
-- Sub-User Management <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- Sub-User Management ❌
 
-- Trading <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- Trading ❌
 
-- Conditional Orders <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- Conditional Orders ❌
 
-- Margin Loan <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- Margin Loan ❌
 
-- Stable Coin Exchange <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- Stable Coin Exchange ❌
 
 
 ## WEBSOCKET API Endpoints
-- Market Data <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
-- Account Data <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
-- Orders <img aling="left" on_click='' width="15px" src = "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Red_X.svg/1200px-Red_X.svg.png"/>
+- Market Data ❌
+- Account Data ❌
+- Orders ❌
 
 ## How To Install
 
@@ -108,7 +108,6 @@ req = client.get_most_recent_trades(currency='ethusdt', size=1)
 ## Planned Features
 * Currency Enum
 * Candles Graphic Draw
-* 
 
 ## Changelog
 
@@ -119,9 +118,8 @@ req = client.get_most_recent_trades(currency='ethusdt', size=1)
 * Add all market endpoints
 * Add some account & user endpoints
 * Add flake8 testing
-### 2022-1-10 
+#### 2022-1-10 - 2022-01-17
 * Add reference data endpoints
 * Add wallet endpoints (GETS)
-
-### Contribution
-TODO
+* Add conditional orders endpoint (GETS)
+* Add trading endpoints (GETS)
