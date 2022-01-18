@@ -48,6 +48,11 @@ from huobi.rest.endpoints.trading import (
     SearchMatchResultEndpoint,
     SearchHistoricalOrdersWithinTwoDaysEndpoint,
 )
+from huobi.rest.endpoints.conditional_orders import (
+    QueryConditionalOrderHistoryEndpoint,
+    QuerySpecificConditionalOrderEndpoint,
+    QueryOpenConditionalOrdersBeforeTriggeringEndpoint,
+)
 
 __all__ = [
     'AccountBalanceEndpoint',
@@ -85,6 +90,9 @@ __all__ = [
     'QueryWithdrawAddressEndpoint',
     'QueryWithdrawQuotaEndpoint',
     'QueryWithdrawalOrderByClientOrderIdEndpoint',
+    'QueryOpenConditionalOrdersBeforeTriggeringEndpoint',
+    'QuerySpecificConditionalOrderEndpoint',
+    'QueryConditionalOrderHistoryEndpoint',
     'SearchForExistedWithdrawsAndDepositsEndpoint',
     'SubUserListEndpoint',
     'SubUserStatusEndpoint',
