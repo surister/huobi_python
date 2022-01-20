@@ -78,26 +78,26 @@
 - [ ] Place a Batch of Orders
 - [ ] Submit Cancel for an Order
 - [ ] Submit Cancel for an Order (based on client order ID)
-- [ ] Get All Open Orders
+- [x] Get All Open Orders
 - [ ] Submit Cancel for Multiple Orders by Criteria
 - [ ] Submit Cancel for Multiple Orders by IDs
 - [ ] Dead man’s switch
-- [ ] Get the Order Detail of an Order
-- [ ] Get the Order Detail of an Order (based on client order ID)
-- [ ] Get the Match Result of an Order
-- [ ] Search Past Orders
-- [ ] Search Historical Orders within 48 Hours
-- [ ] Search Match Results
-- [ ] Get Current Fee Rate Applied to The User
+- [x] Get the Order Detail of an Order
+- [x] Get the Order Detail of an Order (based on client order ID)
+- [x] Get the Match Result of an Order
+- [x] Search Past Orders
+- [x] Search Historical Orders within 48 Hours
+- [x] Search Match Results
+- [x] Get Current Fee Rate Applied to The User
 
 #### Conditional Order
 - [ ] Place a conditional order
 - [ ] Cancel conditional orders (before triggering)
-- [ ] Query open conditional orders (before triggering)
-- [ ] Query conditional order history
-- [ ] Query a specific conditional order
+- [x] Query open conditional orders (before triggering)
+- [x] Query conditional order history
+- [x] Query a specific conditional order
 
-#### Margin Loan
+#### Margin Loan (Cross/Isolated)
 - [ ] Repay Margin Loan（Cross/Isolated ）
 - [ ] Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated)
 - [ ] Transfer Asset from Isolated Margin Account to Spot Trading Account（Isolated)
@@ -114,3 +114,15 @@
 - [ ] Search Past Margin Orders（Cross）
 - [ ] Get the Balance of the Margin Loan Account（Cross）
 - [ ] Repayment Record Reference
+
+#### Margin Loan C2C
+- [ ] Place a lending/borrowing offer
+- [ ] Cancel a lending/borrowing offer
+- [ ] Cancel all lending/borrowing offers
+- [ ] Query lending/borrow offers
+- [ ] Query a lending/borrowing offer
+- [ ] Query lending/borrowing transactions
+- [ ] Repay a borrowing offer
+- [ ] Query C2C repayments
+- [ ] Transfer asset
+- [ ] Query C2C account balance
