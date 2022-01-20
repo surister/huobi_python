@@ -61,6 +61,15 @@ from huobi.rest.endpoints.wallet import (
     QueryWithdrawAddressEndpoint,
     SearchForExistedWithdrawsAndDepositsEndpoint,
 )
+from huobi.rest.endpoints.margin_loan_ci import (
+    LoanInterestRateAndQuotaIsolatedEndpoint,
+    SearchPastMarginOrdersIsolatedEndpoint,
+    SearchPastMarginOrdersCrossEndpoint,
+    BalanceOfTheMarginLoanAccountEndpoint,
+    BalanceOfTheMarginLoanAccountIsolatedEndpoint,
+    LoanInterestRateAndQuotaCrossEndpoint,
+    RepaymentRecordReferenceEndpoint,
+)
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
@@ -86,7 +95,6 @@ class HuobiClient(Client):
                  access_key: str,
                  secret_key: str,
                  url: Union[Url, str] = REST_API_HUOBI_URL):
-
         self.access_key = access_key
         self.secret_key = secret_key
         self.huobi_api_url = Url(url) if isinstance(url, str) else url
@@ -509,6 +517,88 @@ class HuobiClient(Client):
                 'symbol': currency,
                 'orderSide': order_side,
                 'orderType': order_type,
+                'sort': sort,
+                'limit': limit,
+                'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_loan_interest_rate_and_quota_isolated(self, currencies=DONT_SEND):
+        endpoint = LoanInterestRateAndQuotaIsolatedEndpoint(
+            query_params={
+                'symbols': currencies,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_search_past_margin_order_isolated(self, *, currency, states=DONT_SEND, start_date=DONT_SEND,
+                                              end_date=DONT_SEND, from_id=DONT_SEND, direct=DONT_SEND,
+                                              size=DONT_SEND, sub_uid=DONT_SEND):
+        endpoint = SearchPastMarginOrdersIsolatedEndpoint(
+            query_params={
+                'symbol': currency,
+                'states': states,
+                'start-date': start_date,
+                'end-date': end_date,
+                'from': from_id,
+                'direct': direct,
+                'size': size,
+                'sub-uid': sub_uid,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_balance_of_the_margin_loan_account(self, sub_uid=DONT_SEND):
+        endpoint = BalanceOfTheMarginLoanAccountEndpoint(
+            query_params={
+                'sub-uid': sub_uid,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_balance_of_the_margin_loan_account_isolated(self, currency=DONT_SEND, sub_uid=DONT_SEND):
+        endpoint = BalanceOfTheMarginLoanAccountIsolatedEndpoint(
+            query_params={
+                'currency': currency,
+                'sub-uid': sub_uid,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_loan_interest_rate_and_quota_cross(self):
+        endpoint = LoanInterestRateAndQuotaCrossEndpoint()
+        return self._create_request(endpoint)
+
+    def get_search_past_margin_order_cross(self, *, currency=DONT_SEND, state=DONT_SEND,
+                                           start_date=DONT_SEND, end_date=DONT_SEND,
+                                           from_id=DONT_SEND, direct=DONT_SEND,
+                                           size=DONT_SEND, sub_uid=DONT_SEND):
+        endpoint = SearchPastMarginOrdersCrossEndpoint(
+            query_params={
+                'start-date	': start_date,
+                'end-date	': end_date,
+                'currency': currency,
+                'state': state,
+                'from': from_id,
+                'direct': direct,
+                'size': size,
+                'sub-uid': sub_uid,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_repayment_record_reference(self, repay_id=DONT_SEND, account_id=DONT_SEND,
+                                       currency=DONT_SEND, start_time=DONT_SEND,
+                                       end_time=DONT_SEND, sort=DONT_SEND,
+                                       limit=DONT_SEND, from_id=DONT_SEND):
+        endpoint = SearchPastMarginOrdersCrossEndpoint(
+            query_params={
+                'repayId': repay_id,
+                'accountId': account_id,
+                'currency': currency,
+                'startTime': start_time,
+                'endTime': end_time,
                 'sort': sort,
                 'limit': limit,
                 'fromId': from_id,
