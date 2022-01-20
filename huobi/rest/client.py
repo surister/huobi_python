@@ -68,13 +68,11 @@ from huobi.rest.url import Url
 
 class Client:
     def _create_request(self, endpoint, url=None):
-        try:
-            url = Url(url)
-        except Exception as e:
-            print(e)
+        if url:
+            url = Url(url=url)
 
         req = HuobiRequest(
-            url=self.huobi_api_url if url is None else url,
+            url=url or self.huobi_api_url,
             access_key=self.access_key,
             secret_key=self.secret_key,
             endpoint=endpoint,
@@ -95,15 +93,6 @@ class HuobiClient(Client):
 
         if self.access_key is None or self.secret_key is None:
             raise CredentialKeysNotProvided('Secret key or Access key cannot be None')
-
-    def _create_request(self, endpoint):
-        req = HuobiRequest(
-            url=self.huobi_api_url,
-            access_key=self.access_key,
-            secret_key=self.secret_key,
-            endpoint=endpoint,
-        )
-        return req.execute()
 
     def get_accounts(self):
         endpoint = AccountsEndpoint()

@@ -12,6 +12,8 @@ class Url:
     fragment: str
 
     def __init__(self, url: str):
+        if not url:
+            raise Exception('Url should not be empty') # TODO add custom exception
         self._url = urllib.parse.urlparse(url)
 
     @property
