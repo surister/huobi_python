@@ -1,7 +1,5 @@
 from typing import Union
 
-import requests
-
 from huobi.rest.constants import (
     REST_API_HUOBI_URL,
     REST_API_HUOBI_URL_SYSTEM_STATUS,
@@ -15,6 +13,11 @@ from huobi.rest.endpoints.account import (
     AssetValuationEndpoint,
     PointBalanceEndpoint,
 )
+from huobi.rest.endpoints.conditional_orders import (
+    QueryConditionalOrderHistoryEndpoint,
+    QuerySpecificConditionalOrderEndpoint,
+    QueryOpenConditionalOrdersBeforeTriggeringEndpoint,
+)
 from huobi.rest.endpoints.market import (
     CandlesEndpoint,
     MarketDepthEndpoint,
@@ -25,28 +28,12 @@ from huobi.rest.endpoints.market import (
     LatestTickersForAllPairsEndpoint,
     RealTimeNAVEndpoint,
 )
-from huobi.rest.endpoints.users import (
-    ApiKeyQueryEndpoint,
-    AggregatedBalanceEndpoint,
-    UIDEndpoint,
-    SubUserListEndpoint,
-    SubUserStatusEndpoint,
-    DepositAddressSubUserEndpoint,
-    DepositHistorySubUser,
-)
 from huobi.rest.endpoints.reference_data import (
     AllSupportedTradingSymbolsEndpoint,
     AllSupportedCurrenciesEndpoint,
     CurrentTimestampEndpoint,
     CurrencyChainsEndpoint,
     MarketStatusEndpoint,
-)
-from huobi.rest.endpoints.wallet import (
-    QueryDepositAddressEndpoint,
-    QueryWithdrawalOrderByClientOrderIdEndpoint,
-    QueryWithdrawQuotaEndpoint,
-    QueryWithdrawAddressEndpoint,
-    SearchForExistedWithdrawsAndDepositsEndpoint,
 )
 from huobi.rest.endpoints.trading import (
     AllOpenOrdersEndpoint,
@@ -58,27 +45,50 @@ from huobi.rest.endpoints.trading import (
     SearchMatchResultEndpoint,
     SearchHistoricalOrdersWithinTwoDaysEndpoint,
 )
-from huobi.rest.endpoints.conditional_orders import (
-    QueryConditionalOrderHistoryEndpoint,
-    QuerySpecificConditionalOrderEndpoint,
-    QueryOpenConditionalOrdersBeforeTriggeringEndpoint,
+from huobi.rest.endpoints.users import (
+    ApiKeyQueryEndpoint,
+    AggregatedBalanceEndpoint,
+    UIDEndpoint,
+    SubUserListEndpoint,
+    SubUserStatusEndpoint,
+    DepositAddressSubUserEndpoint,
+    DepositHistorySubUser,
 )
-
+from huobi.rest.endpoints.wallet import (
+    QueryDepositAddressEndpoint,
+    QueryWithdrawalOrderByClientOrderIdEndpoint,
+    QueryWithdrawQuotaEndpoint,
+    QueryWithdrawAddressEndpoint,
+    SearchForExistedWithdrawsAndDepositsEndpoint,
+)
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
 
 
 class Client:
-    pass
+    def _create_request(self, endpoint, url=None):
+        try:
+            url = Url(url)
+        except Exception as e:
+            print(e)
+
+        req = HuobiRequest(
+            url=self.huobi_api_url if url is None else url,
+            access_key=self.access_key,
+            secret_key=self.secret_key,
+            endpoint=endpoint,
+        )
+        return req.execute()
 
 
-class HuobiClient:
+class HuobiClient(Client):
     def __init__(self,
                  *,
                  access_key: str,
                  secret_key: str,
                  url: Union[Url, str] = REST_API_HUOBI_URL):
+
         self.access_key = access_key
         self.secret_key = secret_key
         self.huobi_api_url = Url(url) if isinstance(url, str) else url
@@ -308,11 +318,11 @@ class HuobiClient:
         return self._create_request(endpoint)
 
     # TODO maybe it need a refactor
-    def get_currency_chains(self, currency=DONT_SEND, autorized_user=DONT_SEND):
+    def get_currency_chains(self, currency=DONT_SEND, authorized_user=DONT_SEND):
         endpoint = CurrencyChainsEndpoint(
             query_params={
                 'currency': currency,
-                'authorizedUser': autorized_user,
+                'authorizedUser': authorized_user,
             }
         )
         return self._create_request(endpoint)
@@ -326,7 +336,8 @@ class HuobiClient:
         return self._create_request(endpoint)
 
     def get_system_status(self):
-        return requests.get(REST_API_HUOBI_URL_SYSTEM_STATUS)
+        endpoint = ...  # FIXME
+        return self._create_request(endpoint=..., url=REST_API_HUOBI_URL_SYSTEM_STATUS)
 
     def get_query_deposit_address(self, *, currency):
         endpoint = QueryDepositAddressEndpoint(

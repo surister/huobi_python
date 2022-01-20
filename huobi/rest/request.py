@@ -1,11 +1,11 @@
 import urllib.parse
 from datetime import datetime
 
+import requests
+
 from huobi.rest.endpoints import Endpoint
 from huobi.rest.url import Url
 from huobi.rest.utils import generate_hmac256_signature
-
-import requests
 
 
 class HuobiRequest:
@@ -28,7 +28,7 @@ class HuobiRequest:
         self.access_key = access_key
         self.secret_key = secret_key
         self.endpoint = endpoint
-        self.url = url
+        self.url: Url = url
 
     def _build_default_query_params(self):
         """

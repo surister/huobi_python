@@ -6,7 +6,7 @@ from huobi.rest.enums import HttpMethod
 
 @dataclass
 class MarketStatusEndpoint(Endpoint):
-    name: str = 'ReferenceDATA/SystemStatus'
+    name: str = 'ReferenceData/SystemStatus'
     raw_path: str = '/v2/market-status'
     method: HttpMethod = HttpMethod.GET
 
