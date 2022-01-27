@@ -53,6 +53,15 @@ from huobi.rest.endpoints.conditional_orders import (
     QuerySpecificConditionalOrderEndpoint,
     QueryOpenConditionalOrdersBeforeTriggeringEndpoint,
 )
+from huobi.rest.endpoints.margin_loan_ci import (
+    BalanceOfTheMarginLoanAccountEndpoint,
+    BalanceOfTheMarginLoanAccountIsolatedEndpoint,
+    LoanInterestRateAndQuotaIsolatedEndpoint,
+    SearchPastMarginOrdersIsolatedEndpoint,
+    SearchPastMarginOrdersCrossEndpoint,
+    LoanInterestRateAndQuotaCrossEndpoint,
+    RepaymentRecordReferenceEndpoint,
+)
 
 __all__ = [
     'AccountBalanceEndpoint',
@@ -65,6 +74,8 @@ __all__ = [
     'AllOpenOrdersEndpoint',
     'ApiKeyQueryEndpoint',
     'AssetValuationEndpoint',
+    'BalanceOfTheMarginLoanAccountEndpoint',
+    'BalanceOfTheMarginLoanAccountIsolatedEndpoint',
     'CandlesEndpoint',
     'CurrencyChainsEndpoint',
     'CurrentTimestampEndpoint',
@@ -77,6 +88,8 @@ __all__ = [
     'LastTradeEndpoint',
     'LatestAggregatedTickerEndpoint',
     'LatestTickersForAllPairsEndpoint',
+    'LoanInterestRateAndQuotaIsolatedEndpoint',
+    'LoanInterestRateAndQuotaCrossEndpoint',
     'MarketDepthEndpoint',
     'MarketStatusEndpoint',
     'MostRecentTradesEndpoint',
@@ -96,5 +109,8 @@ __all__ = [
     'SearchForExistedWithdrawsAndDepositsEndpoint',
     'SubUserListEndpoint',
     'SubUserStatusEndpoint',
+    'SearchPastMarginOrdersIsolatedEndpoint',
+    'SearchPastMarginOrdersCrossEndpoint',
+    'RepaymentRecordReferenceEndpoint',
     'UIDEndpoint',
 ]
