@@ -62,6 +62,10 @@ from huobi.rest.endpoints.margin_loan_ci import (
     LoanInterestRateAndQuotaCrossEndpoint,
     RepaymentRecordReferenceEndpoint,
 )
+from huobi.rest.endpoints.stable_coin_exchange import (
+    ExchangeRateEndpoint,
+    ExchangeStableCoinEndpoint,
+)
 
 __all__ = [
     'AccountBalanceEndpoint',
@@ -84,6 +88,8 @@ __all__ = [
     'DepositAddressSubUserEndpoint',
     'DepositHistorySubUser',
     'Endpoint',
+    'ExchangeStableCoinEndpoint',
+    'ExchangeRateEndpoint',
     'LastDayMarketSummaryEndpoint',
     'LastTradeEndpoint',
     'LatestAggregatedTickerEndpoint',

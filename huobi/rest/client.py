@@ -70,6 +70,10 @@ from huobi.rest.endpoints.margin_loan_ci import (
     LoanInterestRateAndQuotaCrossEndpoint,
     RepaymentRecordReferenceEndpoint,
 )
+from huobi.rest.endpoints.stable_coin_exchange import (
+    ExchangeRateEndpoint,
+    ExchangeStableCoinEndpoint,
+)
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
@@ -602,6 +606,24 @@ class HuobiClient(Client):
                 'sort': sort,
                 'limit': limit,
                 'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_exchange_rate(self, *, currency, amount, type_exchange):
+        endpoint = ExchangeRateEndpoint(
+            query_params={
+                'currency': currency,
+                'amount': amount,
+                'type': type_exchange,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_exchange_stable_coin(self, *, quote_id):
+        endpoint = ExchangeRateEndpoint(
+            query_params={
+                'quote-id': quote_id,
             }
         )
         return self._create_request(endpoint)
