@@ -70,9 +70,17 @@ from huobi.rest.endpoints.margin_loan_ci import (
     LoanInterestRateAndQuotaCrossEndpoint,
     RepaymentRecordReferenceEndpoint,
 )
+
 from huobi.rest.endpoints.stable_coin_exchange import (
     ExchangeRateEndpoint,
     ExchangeStableCoinEndpoint,
+)
+from huobi.rest.endpoints.margin_loan_c2c import (
+    QueryLendingBorrowOffersEndpoint,
+    QueryLendingBorrowingOfferEndpoint,
+    QueryLendingBorrowingTransactionsEndpoint,
+    QueryC2CRepaymentsEndpoint,
+    QueryC2CAccountBalanceEndpoint,
 )
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
@@ -596,7 +604,7 @@ class HuobiClient(Client):
                                        currency=DONT_SEND, start_time=DONT_SEND,
                                        end_time=DONT_SEND, sort=DONT_SEND,
                                        limit=DONT_SEND, from_id=DONT_SEND):
-        endpoint = SearchPastMarginOrdersCrossEndpoint(
+        endpoint = RepaymentRecordReferenceEndpoint(
             query_params={
                 'repayId': repay_id,
                 'accountId': account_id,
@@ -610,6 +618,7 @@ class HuobiClient(Client):
         )
         return self._create_request(endpoint)
 
+
     def get_exchange_rate(self, *, currency, amount, type_exchange):
         endpoint = ExchangeRateEndpoint(
             query_params={
@@ -617,13 +626,83 @@ class HuobiClient(Client):
                 'amount': amount,
                 'type': type_exchange,
             }
+          return self._create_request(endpoint) 
+              
+    def get_query_lending_borrow_offers(self, *, account_id=DONT_SEND, currency=DONT_SEND,
+                                        side=DONT_SEND, offer_status,
+                                        start_time=DONT_SEND, end_time=DONT_SEND,
+                                        limit=DONT_SEND, from_id=DONT_SEND):
+        endpoint = QueryLendingBorrowOffersEndpoint(
+            query_params={
+                'accountId': account_id,
+                'currency': currency,
+                'side': side,
+                'offerStatus': offer_status,
+                'startTime': start_time,
+                'endTime': end_time,
+                'limit': limit,
+                'fromId': from_id,
+            }
         )
         return self._create_request(endpoint)
+
 
     def get_exchange_stable_coin(self, *, quote_id):
         endpoint = ExchangeRateEndpoint(
             query_params={
                 'quote-id': quote_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_lending_borrowing_offer(self, *, offer_id):
+        endpoint = QueryLendingBorrowingOfferEndpoint(
+            query_params={
+                'offerId': offer_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_lending_borrowing_transactions(self, *, account_id=DONT_SEND, currency=DONT_SEND,
+                                                 side=DONT_SEND, transact_status,
+                                                 start_time=DONT_SEND, end_time=DONT_SEND,
+                                                 limit=DONT_SEND, from_id=DONT_SEND):
+        endpoint = QueryLendingBorrowingTransactionsEndpoint(
+            query_params={
+                'accountId': account_id,
+                'currency': currency,
+                'side': side,
+                'transactStatus': transact_status,
+                'startTime': start_time,
+                'endTime': end_time,
+                'limit': limit,
+                'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_c2c_repayments(self, repay_id=DONT_SEND, account_id=DONT_SEND,
+                                 currency=DONT_SEND,
+                                 start_time=DONT_SEND, end_time=DONT_SEND,
+                                 limit=DONT_SEND, from_id=DONT_SEND):
+        endpoint = QueryC2CRepaymentsEndpoint(
+            query_params={
+                'repayId': repay_id,
+                'accountId': account_id,
+                'currency': currency,
+                'startTime': start_time,
+                'endTime': end_time,
+                'limit': limit,
+                'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_query_c2c_account_balance(self, *, account_id, currency=DONT_SEND):
+        endpoint = QueryC2CAccountBalanceEndpoint(
+            query_params={
+                'accountId': account_id,
+                'currency': currency,
             }
         )
         return self._create_request(endpoint)
