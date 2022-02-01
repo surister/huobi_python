@@ -62,6 +62,13 @@ from huobi.rest.endpoints.margin_loan_ci import (
     LoanInterestRateAndQuotaCrossEndpoint,
     RepaymentRecordReferenceEndpoint,
 )
+from huobi.rest.endpoints.margin_loan_c2c import(
+    QueryLendingBorrowOffersEndpoint,
+    QueryLendingBorrowingOfferEndpoint,
+    QueryLendingBorrowingTransactionsEndpoint,
+    QueryC2CRepaymentsEndpoint,
+    QueryC2CAccountBalanceEndpoint,
+)
 
 __all__ = [
     'AccountBalanceEndpoint',
@@ -103,9 +110,14 @@ __all__ = [
     'QueryWithdrawAddressEndpoint',
     'QueryWithdrawQuotaEndpoint',
     'QueryWithdrawalOrderByClientOrderIdEndpoint',
+    'QueryLendingBorrowOffersEndpoint',
+    'QueryC2CRepaymentsEndpoint',
+    'QueryLendingBorrowingTransactionsEndpoint',
+    'QueryC2CAccountBalanceEndpoint',
     'QueryOpenConditionalOrdersBeforeTriggeringEndpoint',
     'QuerySpecificConditionalOrderEndpoint',
     'QueryConditionalOrderHistoryEndpoint',
+    'QueryLendingBorrowingOfferEndpoint',
     'SearchForExistedWithdrawsAndDepositsEndpoint',
     'SubUserListEndpoint',
     'SubUserStatusEndpoint',
