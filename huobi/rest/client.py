@@ -70,6 +70,11 @@ from huobi.rest.endpoints.margin_loan_ci import (
     LoanInterestRateAndQuotaCrossEndpoint,
     RepaymentRecordReferenceEndpoint,
 )
+
+from huobi.rest.endpoints.stable_coin_exchange import (
+    ExchangeRateEndpoint,
+    ExchangeStableCoinEndpoint,
+)
 from huobi.rest.endpoints.margin_loan_c2c import (
     QueryLendingBorrowOffersEndpoint,
     QueryLendingBorrowingOfferEndpoint,
@@ -613,6 +618,16 @@ class HuobiClient(Client):
         )
         return self._create_request(endpoint)
 
+
+    def get_exchange_rate(self, *, currency, amount, type_exchange):
+        endpoint = ExchangeRateEndpoint(
+            query_params={
+                'currency': currency,
+                'amount': amount,
+                'type': type_exchange,
+            }
+          return self._create_request(endpoint) 
+              
     def get_query_lending_borrow_offers(self, *, account_id=DONT_SEND, currency=DONT_SEND,
                                         side=DONT_SEND, offer_status,
                                         start_time=DONT_SEND, end_time=DONT_SEND,
@@ -627,6 +642,15 @@ class HuobiClient(Client):
                 'endTime': end_time,
                 'limit': limit,
                 'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+
+    def get_exchange_stable_coin(self, *, quote_id):
+        endpoint = ExchangeRateEndpoint(
+            query_params={
+                'quote-id': quote_id,
             }
         )
         return self._create_request(endpoint)

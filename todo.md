@@ -126,3 +126,7 @@
 - [ ] Query C2C repayments
 - [ ] Transfer asset
 - [ ] Query C2C account balance
+
+#### Stable Coin Exchange
+- [ ] Get Exchange Rate
+- [ ] Exchange Stable Coin
