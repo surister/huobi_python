@@ -101,32 +101,32 @@
 - [ ] Repay Margin Loan（Cross/Isolated ）
 - [ ] Transfer Asset from Spot Trading Account to Isolated Margin Account（Isolated)
 - [ ] Transfer Asset from Isolated Margin Account to Spot Trading Account（Isolated)
-- [ ] Get Loan Interest Rate and Quota（Isolated）
+- [x] Get Loan Interest Rate and Quota（Isolated）
 - [ ] Request a Margin Loan（Isolated）
 - [ ] Repay Margin Loan（Isolated）
-- [ ] Search Past Margin Orders（Isolated）
-- [ ] Get the Balance of the Margin Loan Account（Isolated）
+- [x] Search Past Margin Orders（Isolated）
+- [x] Get the Balance of the Margin Loan Account（Isolated）
 - [ ] Transfer Asset from Spot Trading Account to Cross Margin Account（Cross）
 - [ ] Transfer Asset from Cross Margin Account to Spot Trading Account（Cross）
-- [ ] Get Loan Interest Rate and Quota（Cross）
+- [x] Get Loan Interest Rate and Quota（Cross）
 - [ ] Request a Margin Loan（Cross）
 - [ ] Repay Margin Loan（Cross）
-- [ ] Search Past Margin Orders（Cross）
-- [ ] Get the Balance of the Margin Loan Account（Cross）
-- [ ] Repayment Record Reference
+- [x] Search Past Margin Orders（Cross）
+- [x] Get the Balance of the Margin Loan Account（Cross）
+- [x] Repayment Record Reference
 
 #### Margin Loan C2C
 - [ ] Place a lending/borrowing offer
 - [ ] Cancel a lending/borrowing offer
 - [ ] Cancel all lending/borrowing offers
-- [ ] Query lending/borrow offers
-- [ ] Query a lending/borrowing offer
-- [ ] Query lending/borrowing transactions
+- [x] Query lending/borrow offers
+- [x] Query a lending/borrowing offer
+- [x] Query lending/borrowing transactions
 - [ ] Repay a borrowing offer
-- [ ] Query C2C repayments
+- [x] Query C2C repayments
 - [ ] Transfer asset
-- [ ] Query C2C account balance
+- [x] Query C2C account balance
 
 #### Stable Coin Exchange
-- [ ] Get Exchange Rate
-- [ ] Exchange Stable Coin
+- [x] Get Exchange Rate
+- [x] Exchange Stable Coin
