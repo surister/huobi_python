@@ -626,7 +626,8 @@ class HuobiClient(Client):
                 'amount': amount,
                 'type': type_exchange,
             }
-          return self._create_request(endpoint) 
+        )
+        return self._create_request(endpoint)
               
     def get_query_lending_borrow_offers(self, *, account_id=DONT_SEND, currency=DONT_SEND,
                                         side=DONT_SEND, offer_status,
