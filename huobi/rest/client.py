@@ -649,7 +649,7 @@ class HuobiClient(Client):
 
 
     def get_exchange_stable_coin(self, *, quote_id):
-        endpoint = ExchangeRateEndpoint(
+        endpoint = ExchangeStableCoinEndpoint(
             query_params={
                 'quote-id': quote_id,
             }
