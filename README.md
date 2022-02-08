@@ -48,7 +48,7 @@
 
 - Margin Loan ❌
 
-- Stable Coin Exchange ❌
+- Stable Coin Exchange ✔️
 
 
 ## WEBSOCKET API Endpoints
