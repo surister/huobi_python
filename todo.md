@@ -130,3 +130,14 @@
 #### Stable Coin Exchange
 - [x] Get Exchange Rate
 - [x] Exchange Stable Coin
+
+#### ETP
+- [ ] Get reference data of ETP
+- [ ] ETP Creation
+- [ ] ETP Redemption
+- [ ] Get ETP Creation & Redemption History
+- [ ] Get Specific ETP Creation or Redemption Record
+- [ ] Get Position Rebalance History
+- [ ] Submit Cancel for and ETP Order
+- [ ] Batch Cancellation for ETP Orders
+- [ ] Get Holding Limit of  Leveraged ETP
