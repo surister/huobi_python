@@ -82,6 +82,13 @@ from huobi.rest.endpoints.margin_loan_c2c import (
     QueryC2CRepaymentsEndpoint,
     QueryC2CAccountBalanceEndpoint,
 )
+from huobi.rest.endpoints.etp import (
+    ReferenceDataOfETPEndpoint,
+    ETPCreationAndRedemptionHistoryEndpoint,
+    SpecificETPCreationOrRedemptionRecordEndpoint,
+    PositionRebalanceHistoryEndpoint,
+    HoldingLimitOfLeveragedETPEndpoint,
+)
 from huobi.rest.exceptions import CredentialKeysNotProvided
 from huobi.rest.request import HuobiRequest
 from huobi.rest.url import Url
@@ -626,7 +633,8 @@ class HuobiClient(Client):
                 'amount': amount,
                 'type': type_exchange,
             }
-          return self._create_request(endpoint) 
+        )
+        return self._create_request(endpoint)
               
     def get_query_lending_borrow_offers(self, *, account_id=DONT_SEND, currency=DONT_SEND,
                                         side=DONT_SEND, offer_status,
@@ -648,7 +656,7 @@ class HuobiClient(Client):
 
 
     def get_exchange_stable_coin(self, *, quote_id):
-        endpoint = ExchangeRateEndpoint(
+        endpoint = ExchangeStableCoinEndpoint(
             query_params={
                 'quote-id': quote_id,
             }
@@ -702,6 +710,65 @@ class HuobiClient(Client):
         endpoint = QueryC2CAccountBalanceEndpoint(
             query_params={
                 'accountId': account_id,
+                'currency': currency,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_reference_data_of_etp(self, *, etp_name):
+        endpoint = ReferenceDataOfETPEndpoint(
+            query_params={
+                'etpName': etp_name,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_etp_creation_and_redemption_history(self, *, etp_names, currencies=DONT_SEND,
+                                                transact_id=DONT_SEND, transact_status=DONT_SEND,
+                                                start_time=DONT_SEND, end_time=DONT_SEND,
+                                                sort=DONT_SEND, limit=DONT_SEND, from_id=DONT_SEND):
+        endpoint = ETPCreationAndRedemptionHistoryEndpoint(
+            query_params={
+                'etpNames': etp_names,
+                'currencies': currencies,
+                'transactTypes': transact_id,
+                'transactStatus': transact_status,
+                'startTime': start_time,
+                'endTime': end_time,
+                'sort': sort,
+                'limit': limit,
+                'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_specific_etp_creation_or_redemption_record(self, *, transact_id):
+        endpoint = SpecificETPCreationOrRedemptionRecordEndpoint(
+            query_params={
+                'transactId': transact_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_position_rebalance_history(self, *, symbol, rebal_types=DONT_SEND, start_time=DONT_SEND,
+                                       end_time=DONT_SEND, sort=DONT_SEND, limit=DONT_SEND,
+                                       from_id=DONT_SEND):
+        endpoint = PositionRebalanceHistoryEndpoint(
+            query_params={
+                'symbol': symbol,
+                'rebalTypes': rebal_types,
+                'startTime': start_time,
+                'endTime': end_time,
+                'sort': sort,
+                'limit': limit,
+                'fromId': from_id,
+            }
+        )
+        return self._create_request(endpoint)
+
+    def get_holding_limit_of_leveraged_etp(self, *, currency):
+        endpoint = HoldingLimitOfLeveragedETPEndpoint(
+            query_params={
                 'currency': currency,
             }
         )
