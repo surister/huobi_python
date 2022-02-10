@@ -24,6 +24,7 @@ from huobi.rest.endpoints.users import (
     ApiKeyQueryEndpoint,
     SubUserListEndpoint,
     SubUserStatusEndpoint,
+    CreateSubUserEndpoint,
 )
 from huobi.rest.endpoints.reference_data import (
     AllSupportedTradingSymbolsEndpoint,
@@ -74,6 +75,13 @@ from huobi.rest.endpoints.margin_loan_c2c import(
     QueryC2CRepaymentsEndpoint,
     QueryC2CAccountBalanceEndpoint,
 )
+from huobi.rest.endpoints.etp import (
+    ReferenceDataOfETPEndpoint,
+    ETPCreationAndRedemptionHistoryEndpoint,
+    SpecificETPCreationOrRedemptionRecordEndpoint,
+    PositionRebalanceHistoryEndpoint,
+    HoldingLimitOfLeveragedETPEndpoint,
+)
 
 __all__ = [
     'AccountBalanceEndpoint',
@@ -96,6 +104,7 @@ __all__ = [
     'DepositAddressSubUserEndpoint',
     'DepositHistorySubUser',
     'Endpoint',
+    'ETPCreationAndRedemptionHistoryEndpoint',
     'ExchangeStableCoinEndpoint',
     'ExchangeRateEndpoint',
     'LastDayMarketSummaryEndpoint',
@@ -108,6 +117,7 @@ __all__ = [
     'MarketStatusEndpoint',
     'MostRecentTradesEndpoint',
     'PointBalanceEndpoint',
+    'PositionRebalanceHistoryEndpoint',
     'OrderDetailOfAClientOrderIdEndpoint',
     'OrderDetailOfAnOrderEndpoint',
     'SearchPastOrdersEndpoint',
@@ -128,6 +138,8 @@ __all__ = [
     'SearchForExistedWithdrawsAndDepositsEndpoint',
     'SubUserListEndpoint',
     'SubUserStatusEndpoint',
+    'SpecificETPCreationOrRedemptionRecordEndpoint',
+    'ReferenceDataOfETPEndpoint',
     'SearchPastMarginOrdersIsolatedEndpoint',
     'SearchPastMarginOrdersCrossEndpoint',
     'RepaymentRecordReferenceEndpoint',
