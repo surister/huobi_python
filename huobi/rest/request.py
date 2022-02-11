@@ -16,7 +16,7 @@ class HuobiRequest:
         'Timestamp': None,
     }
 
-    __slots__ = ('endpoint', 'access_key', 'secret_key', 'url')
+    __slots__ = ('endpoint', 'access_key', 'secret_key', 'url', 'json')
 
     def __init__(self,
                  *,
@@ -24,11 +24,13 @@ class HuobiRequest:
                  secret_key: str,
                  endpoint: Endpoint,
                  url: Url,
+                 json: dict,
                  ):
         self.access_key = access_key
         self.secret_key = secret_key
         self.endpoint = endpoint
         self.url: Url = url
+        self.json: dict = json
 
     def _build_default_query_params(self):
         """
@@ -62,4 +64,5 @@ class HuobiRequest:
         return requests.request(
             method=self.endpoint.method.name,
             url=request_url,
+            json=self.json
         )
