@@ -132,12 +132,12 @@
 - [x] Exchange Stable Coin
 
 #### ETP
-- [ ] Get reference data of ETP
+- [x] Get reference data of ETP
 - [ ] ETP Creation
 - [ ] ETP Redemption
-- [ ] Get ETP Creation & Redemption History
-- [ ] Get Specific ETP Creation or Redemption Record
-- [ ] Get Position Rebalance History
+- [x] Get ETP Creation & Redemption History
+- [x] Get Specific ETP Creation or Redemption Record
+- [x] Get Position Rebalance History
 - [ ] Submit Cancel for and ETP Order
 - [ ] Batch Cancellation for ETP Orders
-- [ ] Get Holding Limit of  Leveraged ETP
+- [x] Get Holding Limit of  Leveraged ETP

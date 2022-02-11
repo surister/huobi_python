@@ -74,3 +74,66 @@ class DepositHistorySubUser(Endpoint):
         'limit': DONT_SEND,
         'fromId': DONT_SEND,
     }
+
+
+@dataclass
+class CreateSubUserEndpoint(Endpoint):
+    name: str = 'subuser/CreateSubUser'
+    raw_path: str = '/v2/sub-user/creation'
+    method: HttpMethod = HttpMethod.POST
+
+
+@dataclass
+class LockUnlockSubUserEndpoint(Endpoint):
+    name: str = 'subuser/LockUnlockSubUser'
+    raw_path: str = '/v2/sub-user/management'
+    method: HttpMethod = HttpMethod.POST
+
+
+@dataclass
+class SetTradableMarketForSubUsersEndpoint(Endpoint):
+    name: str = 'subuser/SetTradableMarketForSubUsers'
+    raw_path: str = '/v2/sub-user/tradable-market'
+    method: HttpMethod = HttpMethod.POST
+
+
+@dataclass
+class SetAssetTransferPermissionForSubUsersEndpoint(Endpoint):
+    name: str = 'subuser/SetAssetTransferPermissionForSubUsers'
+    raw_path: str = '/v2/sub-user/transferability'
+    method: HttpMethod = HttpMethod.POST
+
+
+@dataclass
+class SubUserAPIKeyCreationEndpoint(Endpoint):
+    name: str = 'subuser/SubUserAPIKeyCreation'
+    raw_path: str = '/v2/sub-user/api-key-generation'
+    method: HttpMethod = HttpMethod.POST
+
+
+@dataclass
+class SubUserAPIKeyModificationEndpoint(Endpoint):
+    name: str = 'subuser/SubUserAPIKeyModification'
+    raw_path: str = '/v2/sub-user/api-key-modification'
+    method: HttpMethod = HttpMethod.POST
+
+
+@dataclass
+class SubUserAPIKeyDeletionEndpoint(Endpoint):
+    name: str = 'subuser/ubUserAPIKeyDeletion'
+    raw_path: str = '/v2/sub-user/api-key-deletion'
+    method: HttpMethod = HttpMethod.POST
+
+
+@dataclass
+class TransferAssetBetweenParentAndSubAccountEndpoint(Endpoint):
+    name: str = 'subuser/TransferAssetBetweenParentAndSubAccount'
+    raw_path: str = '/v1/subuser/transfer'
+    method: HttpMethod = HttpMethod.POST
+
+
+@dataclass
+class SetADeductionForParentAndSubUserEndpoint(Endpoint):
+    name: str = 'subuser/SetADeductionForParentAndSubUser'
+    raw_path: str = '/v2/sub-user/deduct-mode'
+    method: HttpMethod = HttpMethod.POST

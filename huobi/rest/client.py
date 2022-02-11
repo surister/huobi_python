@@ -53,6 +53,15 @@ from huobi.rest.endpoints.users import (
     SubUserStatusEndpoint,
     DepositAddressSubUserEndpoint,
     DepositHistorySubUser,
+    CreateSubUserEndpoint,
+    LockUnlockSubUserEndpoint,
+    SetTradableMarketForSubUsersEndpoint,
+    SetAssetTransferPermissionForSubUsersEndpoint,
+    SetADeductionForParentAndSubUserEndpoint,
+    SubUserAPIKeyCreationEndpoint,
+    SubUserAPIKeyModificationEndpoint,
+    SubUserAPIKeyDeletionEndpoint,
+    TransferAssetBetweenParentAndSubAccountEndpoint,
 )
 from huobi.rest.endpoints.wallet import (
     QueryDepositAddressEndpoint,
@@ -95,7 +104,7 @@ from huobi.rest.url import Url
 
 
 class Client:
-    def _create_request(self, endpoint, url=None):
+    def _create_request(self, endpoint, url=None, json=None):
         if url:
             url = Url(url=url)
 
@@ -104,6 +113,7 @@ class Client:
             access_key=self.access_key,
             secret_key=self.secret_key,
             endpoint=endpoint,
+            json=json
         )
         return req.execute()
 
@@ -625,7 +635,6 @@ class HuobiClient(Client):
         )
         return self._create_request(endpoint)
 
-
     def get_exchange_rate(self, *, currency, amount, type_exchange):
         endpoint = ExchangeRateEndpoint(
             query_params={
@@ -635,7 +644,7 @@ class HuobiClient(Client):
             }
         )
         return self._create_request(endpoint)
-              
+
     def get_query_lending_borrow_offers(self, *, account_id=DONT_SEND, currency=DONT_SEND,
                                         side=DONT_SEND, offer_status,
                                         start_time=DONT_SEND, end_time=DONT_SEND,
@@ -653,7 +662,6 @@ class HuobiClient(Client):
             }
         )
         return self._create_request(endpoint)
-
 
     def get_exchange_stable_coin(self, *, quote_id):
         endpoint = ExchangeStableCoinEndpoint(
@@ -714,6 +722,71 @@ class HuobiClient(Client):
             }
         )
         return self._create_request(endpoint)
+
+    def post_create_sub_user(self, *, payload: dict):
+        endpoint = CreateSubUserEndpoint()
+        return self._create_request(endpoint, json=payload)
+
+    def post_lock_unlock_sub_user(self, *, sub_uid, action):
+        endpoint = LockUnlockSubUserEndpoint()
+        json = {
+            'subUid': sub_uid,
+            'action': action,
+        }
+        return self._create_request(endpoint, json=json)
+
+    def post_set_tradable_market_for_sub_user(self, *, payload: dict):  # ERROR 500, NOT OUR FAULT
+        endpoint = SetTradableMarketForSubUsersEndpoint()
+        return self._create_request(endpoint, json=payload)
+
+    def post_set_asset_transfer_permissions_for_sub_user(self, *, payload: dict):  # ERROR 500
+        endpoint = SetAssetTransferPermissionForSubUsersEndpoint()
+        return self._create_request(endpoint, json=payload)
+
+    def post_sub_user_api_key_creation(self, *, otp_token, sub_uid, note, permission,
+                                       ip_addresses=''):
+        endpoint = SubUserAPIKeyCreationEndpoint()
+        payload = {
+            'otpToken': otp_token,
+            'subUid': sub_uid,
+            'note': note,
+            'permission': permission,   # Maybe need a enum
+            'ipAddresses': ip_addresses
+        }
+        return self._create_request(endpoint, json=payload)
+
+    def post_transfer_asset_between_parent_and_sub_account(self, *, sub_uid, currency, amount, type_transfer):
+        endpoint = TransferAssetBetweenParentAndSubAccountEndpoint()
+        payload = {
+            'sub-uid': sub_uid,
+            'currency': currency,
+            'amount': amount,
+            'type': type_transfer,  # Maybe need a enum
+        }
+        return self._create_request(endpoint, json=payload)
+
+    def post_sub_user_api_key_modification(self, *, sub_uid, access_key, permission=None, note=None, ip_addresses=None):
+        endpoint = SubUserAPIKeyModificationEndpoint()
+        payload = {
+            'subUid': sub_uid,
+            'accessKey': access_key,
+            'note': note,
+            'permission': permission,  # Should be write without space Maybe need a enum
+            'ipAddresses': ip_addresses
+        }
+        return self._create_request(endpoint, json=payload)
+
+    def post_set_a_deduction_for_parent_and_sub_user(self, *, payload: dict):   # Error 500
+        endpoint = SetADeductionForParentAndSubUserEndpoint()
+        return self._create_request(endpoint, json=payload)
+
+    def post_sub_user_api_key_deletion(self, *, sub_uid, access_key):
+        endpoint = SubUserAPIKeyDeletionEndpoint()
+        payload = {
+            'subUid': sub_uid,
+            'accessKey': access_key,
+        }
+        return self._create_request(endpoint, json=payload)
 
     def get_reference_data_of_etp(self, *, etp_name):
         endpoint = ReferenceDataOfETPEndpoint(

@@ -21,7 +21,7 @@ class AllSupportedTradingSymbolsEndpoint(Endpoint):
 @dataclass
 class AllSupportedCurrenciesEndpoint(Endpoint):
     name: str = 'ReferenceData/AllSupportedCurrencies'
-    raw_path: str = '/v1/common/currencies'
+    raw_path: str = '/v1/common/currencys'
     method: HttpMethod = HttpMethod.GET
 
 
